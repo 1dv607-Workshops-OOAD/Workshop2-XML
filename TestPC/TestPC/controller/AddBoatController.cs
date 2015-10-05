@@ -3,18 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestPC.model;
 using TestPC.view;
 
 namespace TestPC.controller
 {
     class AddBoatController
     {
-        private BoatView boatView;
+        private AddBoatView boatView;
+        private MemberDAL memberDAL;
+        private string selectedMember;
+
         public AddBoatController() {
-            this.boatView = new BoatView();
+            this.boatView = new AddBoatView();
+            this.memberDAL = new MemberDAL();
             boatView.showAddBoatMenu();
             boatView.showMemberList();
+            this.selectedMember = boatView.getSelectedMember();
+            saveBoat();
         }
 
+        public void saveBoat() {
+            Boat newBoat = boatView.addBoat();
+            memberDAL.saveBoat(newBoat, selectedMember);
+        }
     }
 }

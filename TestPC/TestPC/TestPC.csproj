@@ -55,7 +55,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="view\AddMemberView.cs" />
-    <Compile Include="view\BoatView.cs" />
+    <Compile Include="view\AddBoatView.cs" />
     <Compile Include="view\ListView.cs" />
     <Compile Include="view\StartView.cs" />
   </ItemGroup>

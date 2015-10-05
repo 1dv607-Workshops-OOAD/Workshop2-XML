@@ -50,29 +50,26 @@ namespace TestPC.model
             memberRoot.Add(new XAttribute("id", newMember.MemberID.ToString()));
             memberRoot.Add(new XAttribute("name", newMember.MemberName));
             memberRoot.Add(new XAttribute("socialnumber", newMember.MemberSocSecNo));
-            memberRoot.Add(new XElement("Boats"));
+            //memberRoot.Add(new XElement("Boats"));
             doc.Element("members").Add(memberRoot); 
 			doc.Save(path);
             
         }
-	    public void saveBoat(Boat newBoat, int memberId){
+	    public void saveBoat(Boat newBoat, string memberId){
+            Console.WriteLine(memberId);
             XDocument doc = XDocument.Load(path);
+            XElement memberRoot = new XElement("Member");
 
-            doc.Element("Members").Elements("Member")
-                .First(c => (int)c.Attribute("id") == memberId).Add(new XElement(
-                             "boat", new XAttribute("id", "")));
-
-
-           /* XElement memberRoot = new XElement("Member");
-            XElement boat = new XElement("Boat");
-            memberRoot.Add(boat);
-            boat.Add(new XAttribute("id", ""));
-            boat.Add(new XAttribute("boattype", newBoat.BoatType));
-            boat.Add(new XAttribute("boatlength", newBoat.BoatLength));*/
-
-
-
-
+            doc.Element("members").Elements("Member")
+            .First(c => (string)c.Attribute("id") == memberId).Add
+                 (
+                     new XElement
+                         (
+                             "Boat",    new XAttribute("boatType", newBoat.BoatType),
+                                        new XAttribute("boatLength", newBoat.BoatLength)
+                         )
+                  );
+            doc.Save(path);
         }
 
     }
