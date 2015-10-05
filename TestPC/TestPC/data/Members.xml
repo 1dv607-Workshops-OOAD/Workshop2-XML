@@ -12,4 +12,7 @@
   <Member id="13" name="Pelle Svensson" socialnumber="556677-8888">
     <Boats />
   </Member>
+  <Member id="14" name="Johan Leitet" socialnumber="112233-4455">
+    <Boats />
+  </Member>
 </members>

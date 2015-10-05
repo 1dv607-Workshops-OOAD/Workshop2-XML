@@ -33,9 +33,9 @@ namespace TestPC.model
                         //Console.WriteLine(reader.GetAttribute("socialnumber"));
                     }
                }
-               foreach (var item in members){
-                   Console.WriteLine("{0}: {1}", item.Key, item.Value);
-               }
+               //foreach (var item in members){
+               //    Console.WriteLine("{0}: {1}", item.Key, item.Value);
+               //}
                Console.ReadLine();
                 
                return members;

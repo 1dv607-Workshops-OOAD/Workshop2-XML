@@ -12,7 +12,6 @@ namespace TestPC.controller
     {
         private StartView _startView;
         private MemberDAL _memberDAL;
-        private ListController _listController;
 
    
 
@@ -25,7 +24,6 @@ namespace TestPC.controller
      }
     public void executeMenuChoice(){
 			StartView.MenuChoice menuChoice = _startView.GetMenuChoice();
-			Console.WriteLine (menuChoice);
 			if (menuChoice == StartView.MenuChoice.AddMember)
 			{
 				AddMemberController addMemberController = new AddMemberController();
@@ -33,14 +31,16 @@ namespace TestPC.controller
 			if (menuChoice == StartView.MenuChoice.CompactListMembers ||
 				menuChoice == StartView.MenuChoice.VerboseListMembers){
                 bool showCompactList = false;
-                
                 if (menuChoice == StartView.MenuChoice.CompactListMembers)
-				{
+                {
                     showCompactList = true;
-				}
+                }
                 ListController listController = new ListController(showCompactList);
 			}
-		
+           
+            if(menuChoice == StartView.MenuChoice.AddBoat){
+                EditMemberController editMemberController = new EditMemberController();
+            }
 		}
     }
 }
