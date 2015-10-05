@@ -46,10 +46,14 @@ namespace TestPC.view
 			{
 				return MenuChoice.CompactListMembers;
 			}
-			if (menuChoice == '3' || menuChoice == '4')
+			if (menuChoice == '3')
 			{
 				return MenuChoice.VerboseListMembers;
 			}
+            if (menuChoice == '4')
+            {
+                return MenuChoice.AddBoat;
+            }
 
 			return MenuChoice.None;
 		}

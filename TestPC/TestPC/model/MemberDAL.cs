@@ -36,7 +36,7 @@ namespace TestPC.model
                //foreach (var item in members){
                //    Console.WriteLine("{0}: {1}", item.Key, item.Value);
                //}
-               Console.ReadLine();
+               //Console.ReadLine();
                 
                return members;
               }

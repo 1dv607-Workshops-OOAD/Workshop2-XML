@@ -42,7 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="controller\AddBoatController.cs" />
     <Compile Include="controller\AddMemberController.cs" />
+    <Compile Include="controller\EditMemberController.cs" />
     <Compile Include="controller\ListController.cs" />
     <Compile Include="controller\StartController.cs" />
     <Compile Include="helper\Helper.cs" />
@@ -53,6 +55,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="view\AddMemberView.cs" />
+    <Compile Include="view\BoatView.cs" />
     <Compile Include="view\ListView.cs" />
     <Compile Include="view\StartView.cs" />
   </ItemGroup>

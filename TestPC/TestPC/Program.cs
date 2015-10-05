@@ -11,7 +11,6 @@ namespace TestPC
     {
         static void Main(string[] args)
         {
-
            StartController startController = new StartController();
         }
     }

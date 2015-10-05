@@ -11,12 +11,8 @@ namespace TestPC.controller
     {
         private ListView _listView;
         
-        public ListController(bool showCompactList){
+        public ListController(){
             this._listView = new ListView();
-            if (showCompactList)
-            {
-                _listView.showCompactList();
-            }
         }
 
     }
