@@ -57,7 +57,7 @@ namespace TestPC.view
             Console.Write("Ange båtens längd: ");
             string boatLength = Console.ReadLine();
 
-            Boat newBoat = new Boat(_memberDAL.getNumberOfBoats(selectedMember), boatType, boatLength);
+            Boat newBoat = new Boat(0, boatType, boatLength, selectedMember);
 
             return newBoat;
 

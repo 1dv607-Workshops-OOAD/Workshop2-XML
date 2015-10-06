@@ -12,9 +12,18 @@ namespace TestPC.model
         string _boatLength;
         int _boatId;
 
-        public Boat(int boatId, string boatType, string boatLength)
+        public Boat(int boatId, string boatType, string boatLength, string selectedMember)
         {
-            this._boatId = ++boatId;
+            MemberDAL _memberDAL = new MemberDAL(); 
+
+            if (boatId == 0)
+            {
+                this._boatId = 1 + _memberDAL.getNumberOfBoats(selectedMember);
+            }
+            else
+            {
+                this._boatId = boatId;
+            }
             this._boatType = boatType;
             this._boatLength = boatLength;
         }

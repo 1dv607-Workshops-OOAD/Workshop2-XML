@@ -13,11 +13,17 @@ namespace TestPC.view
         Helper helper = new Helper();
         private MemberDAL memberDAL;
         private string boatId;
+        private string boatType;
+        private string boatLength;
+        private string memberId;
+
         public EditBoatView() {
             this.memberDAL = new MemberDAL();
         }
 
         public void showMemberBoatsMenu(string memberId){
+
+            this.memberId = memberId;
 
             List<KeyValuePair<string, string>> boats = new List<KeyValuePair<string, string>>();
             boats = memberDAL.getBoatsByMemberId(memberId);
@@ -53,6 +59,14 @@ namespace TestPC.view
 
             foreach (var element in boat)
             {
+                if(element.Key == memberDAL.getBoatTypeKey()){
+                    boatType = element.Value;
+                }
+
+                if (element.Key == memberDAL.getBoatLengthKey())
+                {
+                    boatLength = element.Value;
+                }
                 Console.WriteLine("{0}: {1}", element.Key, element.Value);
             }
         }
@@ -71,6 +85,56 @@ namespace TestPC.view
             }
 
             return Helper.MenuChoice.None;
+        }
+
+        public Boat editBoat(string selectedBoatId) {
+            Console.Clear();
+            this.helper.printDivider();
+            Console.WriteLine("REDIGERA BÅT MED ID " + selectedBoatId + "\n");
+            this.helper.printDivider();
+
+            Console.WriteLine("Ange båttyp:");
+            Console.WriteLine("1 för segelbåt,");
+            Console.WriteLine("2 för kayak eller kanot,");
+            Console.WriteLine("3 för motorseglare,");
+            Console.WriteLine("4 för annan typ.\n");
+            string newBoatType = setBoatType(Console.ReadLine());
+            Console.Write("Båtlängd: ");
+            string newBoatLength = Console.ReadLine();
+
+            if (newBoatLength == "")
+            {
+                newBoatLength = boatLength;
+            }
+
+            Boat editedBoat = new Boat(int.Parse(boatId), newBoatType, newBoatLength, memberId);
+
+            return editedBoat;
+        }
+
+        public string setBoatType(string input)
+        {
+
+            string boatType = "";
+
+            if (input == "1")
+            {
+                boatType = "Segelbåt";
+            }
+            if (input == "2")
+            {
+                boatType = "Kajak";
+            }
+            if (input == "3")
+            {
+                boatType = "Motorseglare";
+            }
+            if (input == "4")
+            {
+                boatType = "Annan";
+            }
+
+            return boatType;
         }
     }
 }

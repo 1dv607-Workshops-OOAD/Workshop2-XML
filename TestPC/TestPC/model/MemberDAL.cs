@@ -90,10 +90,6 @@ namespace TestPC.model
             return boatList.Count;
         }
 
-        public void editMember()
-        {
-            //kalla på save
-        }
 
         public List<KeyValuePair<string, string>> getMemberById(string memberId)
         {
@@ -138,7 +134,6 @@ namespace TestPC.model
             memberRoot.Add(new XAttribute("id", newMember.MemberID.ToString()));
             memberRoot.Add(new XAttribute("name", newMember.MemberName));
             memberRoot.Add(new XAttribute("socialnumber", newMember.MemberSocSecNo));
-            //memberRoot.Add(new XElement("Boats"));
             doc.Element("members").Add(memberRoot);
             doc.Save(path);
 
@@ -234,14 +229,26 @@ namespace TestPC.model
 
         public void deleteBoatById(string selectedBoatId, string memberId)
         {
-            Console.WriteLine("DAL " + selectedBoatId + " " + memberId);
             XDocument doc = XDocument.Load(path);
             doc.Descendants("Boat").Where(e => e.Attribute("boatId").Value.Equals(selectedBoatId)).Where(e => e.Parent.Attribute("id").Value.Equals(memberId)).Single().Remove();
             doc.Save(path);
+        }
 
+        public void updateBoatById(Boat editedBoat, string memberId)
+        {
+            Console.WriteLine("edit boat i dal");
             
-            //.Where((b => b.Attribute("boatId").Value.Equals(selectedBoatId)).Select(b => b).Remove();
-            //doc.Save(path);
+            XDocument doc = XDocument.Load(path);
+
+            var element = doc.Descendants("Member")
+                .Where(arg => arg.Attribute("id").Value == memberId)
+                .Single();
+
+            element.Element("Boat").Attribute("boatType").Value = editedBoat.BoatType;
+            element.Element("Boat").Attribute("boatLength").Value = editedBoat.BoatLength;
+            
+            doc.Save(path);
+
         }
     }
 }

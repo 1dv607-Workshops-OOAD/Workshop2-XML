@@ -28,7 +28,6 @@ namespace TestPC.controller
         public void showSelectedBoat() {
             selectedBoatId = editBoatView.getSelectedBoat();
             editBoatView.showEditBoatMenu(selectedBoatId, memberId);
-            //memberDAL.deleteBoatById(editBoatView.getEditBoatMenuChoice());
         }
 
         public void executeMenuChoice() {
@@ -39,6 +38,9 @@ namespace TestPC.controller
                 StartController startController = new StartController();
             }
             if(menuChoice == Helper.MenuChoice.Edit){
+
+                memberDAL.updateBoatById(editBoatView.editBoat(selectedBoatId), memberId);
+                StartController startController = new StartController();
             }
 
 

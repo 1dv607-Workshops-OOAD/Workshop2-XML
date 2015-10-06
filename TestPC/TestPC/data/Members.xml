@@ -1,4 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <members>
-  <Member id="21" name="Johanna" socialnumber="111111-1111" />
+  <Member id="21" name="Johanna" socialnumber="111111-1111">
+    <Boat boatId="1" boatType="Motorseglare" boatLength="100" />
+  </Member>
 </members>
