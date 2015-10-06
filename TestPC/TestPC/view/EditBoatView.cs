@@ -12,6 +12,7 @@ namespace TestPC.view
     {
         Helper helper = new Helper();
         private MemberDAL memberDAL;
+        private string boatId;
         public EditBoatView() {
             this.memberDAL = new MemberDAL();
         }
@@ -36,7 +37,7 @@ namespace TestPC.view
 
         public string getSelectedBoat()
         {
-            string boatId = Console.ReadLine();
+            boatId = Console.ReadLine();
             return boatId;
         }
 
@@ -56,10 +57,20 @@ namespace TestPC.view
             }
         }
 
-        public string getEditBoatMenuChoice()
+        public Helper.MenuChoice getEditBoatMenuChoice()
         {
-            string boatId = Console.ReadLine();
-            return boatId;
+
+            string menuChoice = Console.ReadLine().ToUpper();
+            if (menuChoice == "T")
+            {
+                return Helper.MenuChoice.Delete;
+            }
+            if (menuChoice == "R")
+            {
+                return Helper.MenuChoice.Edit;
+            }
+
+            return Helper.MenuChoice.None;
         }
     }
 }

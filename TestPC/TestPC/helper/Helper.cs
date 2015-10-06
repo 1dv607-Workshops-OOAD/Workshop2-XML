@@ -10,8 +10,8 @@ namespace TestPC.helper
     {
         public enum MenuChoice
         {
-            DeleteMember,
-            EditMember,
+            Delete,
+            Edit,
             Boats,
             Back,
             None

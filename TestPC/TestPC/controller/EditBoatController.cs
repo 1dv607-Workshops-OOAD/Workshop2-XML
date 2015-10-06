@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestPC.helper;
 using TestPC.model;
 using TestPC.view;
 
@@ -13,6 +14,7 @@ namespace TestPC.controller
         private MemberDAL memberDAL;
         private EditBoatView editBoatView;
         private string memberId;
+        private string selectedBoatId;
 
         public EditBoatController(string memberId) {
             this.memberDAL = new MemberDAL();
@@ -20,15 +22,26 @@ namespace TestPC.controller
             this.memberId = memberId;
             editBoatView.showMemberBoatsMenu(memberId);
             showSelectedBoat();
-            //editBoatView.getSelectedBoat();
-            
-            
+            executeMenuChoice();
         }
 
         public void showSelectedBoat() {
-            editBoatView.showEditBoatMenu(editBoatView.getSelectedBoat(), memberId);
-            
-            Console.WriteLine(editBoatView.getEditBoatMenuChoice());
+            selectedBoatId = editBoatView.getSelectedBoat();
+            editBoatView.showEditBoatMenu(selectedBoatId, memberId);
+            //memberDAL.deleteBoatById(editBoatView.getEditBoatMenuChoice());
+        }
+
+        public void executeMenuChoice() {
+            Helper.MenuChoice menuChoice = editBoatView.getEditBoatMenuChoice();
+
+            if(menuChoice == Helper.MenuChoice.Delete){
+                memberDAL.deleteBoatById(selectedBoatId, memberId);
+                StartController startController = new StartController();
+            }
+            if(menuChoice == Helper.MenuChoice.Edit){
+            }
+
+
         }
     }
 }

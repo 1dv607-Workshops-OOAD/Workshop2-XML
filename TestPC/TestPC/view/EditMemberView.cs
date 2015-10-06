@@ -24,11 +24,11 @@ namespace TestPC.view
             string menuChoice = Console.ReadLine().ToUpper();
             if (menuChoice == "T")
             {
-                return Helper.MenuChoice.DeleteMember;
+                return Helper.MenuChoice.Delete;
             }
             if (menuChoice == "R")
             {
-                return Helper.MenuChoice.EditMember;
+                return Helper.MenuChoice.Edit;
             }
             if (menuChoice == "B")
             {

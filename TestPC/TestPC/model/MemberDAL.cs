@@ -231,5 +231,17 @@ namespace TestPC.model
                 return boat;
             }
         }
+
+        public void deleteBoatById(string selectedBoatId, string memberId)
+        {
+            Console.WriteLine("DAL " + selectedBoatId + " " + memberId);
+            XDocument doc = XDocument.Load(path);
+            doc.Descendants("Boat").Where(e => e.Attribute("boatId").Value.Equals(selectedBoatId)).Where(e => e.Parent.Attribute("id").Value.Equals(memberId)).Single().Remove();
+            doc.Save(path);
+
+            
+            //.Where((b => b.Attribute("boatId").Value.Equals(selectedBoatId)).Select(b => b).Remove();
+            //doc.Save(path);
+        }
     }
 }

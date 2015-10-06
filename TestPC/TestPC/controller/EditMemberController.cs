@@ -30,12 +30,12 @@ namespace TestPC.controller
 
         public void executeMenuChoice(Helper.MenuChoice menuChoice)
         {
-            if (menuChoice == Helper.MenuChoice.DeleteMember)
+            if (menuChoice == Helper.MenuChoice.Delete)
             {
                 memberDAL.deleteMemberById(selectedMember);
                 StartController startController = new StartController();
             }
-            if (menuChoice == Helper.MenuChoice.EditMember)
+            if (menuChoice == Helper.MenuChoice.Edit)
             {
                 editMemberView.showSelectedMemberWithoutBoats(selectedMember);
                 memberDAL.updateMemberById(editMemberView.editMember(selectedMember));
