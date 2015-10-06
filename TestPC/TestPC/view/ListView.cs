@@ -26,6 +26,7 @@ namespace TestPC.view
         public ListView()
         {
             this._memberDAL = new MemberDAL();
+            listMembers = _memberDAL.listMembers();
         }
 
         public MenuChoice GetMenuChoice()
@@ -54,19 +55,27 @@ namespace TestPC.view
         public void showCompactList()
         {
             //Denna ska skrivas om till en compact list!
-            listMembers = _memberDAL.listMembers();
             Console.Clear();
             this.helper.printDivider();
             Console.WriteLine("FÖRENKLAD MEDLEMSLISTA");
             this.helper.printDivider();
             foreach (var member in listMembers)
             {
+                if (member.Key == _memberDAL.getBoatType() || 
+                    member.Key == _memberDAL.getBoatLength() ||
+                    member.Key == _memberDAL.getSocialSecNo())
+                {
+                    continue;
+                }
                 Console.WriteLine("{0}: {1}", member.Key, member.Value);
             }
         }
 
         public void showVerboseList() {
-            listMembers = _memberDAL.listMembers();
+            Console.Clear();
+            this.helper.printDivider();
+            Console.WriteLine("UTÖKAD MEDLEMSLISTA");
+            this.helper.printDivider();
 
             foreach (var member in listMembers)
             {

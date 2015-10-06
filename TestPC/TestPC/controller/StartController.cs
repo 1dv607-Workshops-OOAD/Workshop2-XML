@@ -17,9 +17,6 @@ namespace TestPC.controller
         public StartController()
         {
             _memberDAL = new MemberDAL();
-            //if(_startView != null){
-            //    _startView = null;
-            //}
             _startView = new StartView();
             _startView.showStartMenu();
             executeMenuChoice();
@@ -33,15 +30,14 @@ namespace TestPC.controller
                 AddMemberController addMemberController = new AddMemberController();
             }
 
-       /*     if (menuChoice == StartView.MenuChoice.CompactListMembers)
+            /*if (menuChoice == StartView.MenuChoice.CompactListMembers)
             {
                 
-            }
-            if (menuChoice == StartView.MenuChoice.VerboseListMembers) 
-            {
-                
-                listView.showVerboseList();
             }*/
+            if (menuChoice == StartView.MenuChoice.VerboseListMembers || menuChoice == StartView.MenuChoice.CompactListMembers) 
+            {
+                ListController listController = new ListController(menuChoice);
+            }
             if (menuChoice == StartView.MenuChoice.AddBoat)
             {
                 AddBoatController addBoatController = new AddBoatController(); 

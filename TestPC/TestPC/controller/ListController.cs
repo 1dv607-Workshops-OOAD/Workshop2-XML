@@ -11,8 +11,20 @@ namespace TestPC.controller
     {
         private ListView _listView;
         
-        public ListController(){
+        public ListController(StartView.MenuChoice menuChoice){
             this._listView = new ListView();
+            executeMenuChoice(menuChoice);
+        }
+
+        public void executeMenuChoice(StartView.MenuChoice menuChoice) {
+            if (menuChoice == StartView.MenuChoice.CompactListMembers)
+            {
+                _listView.showCompactList();
+            }
+            else 
+            {
+                _listView.showVerboseList();    
+            }
         }
 
     }
