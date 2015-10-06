@@ -12,6 +12,9 @@ namespace TestPC.view
     {
         Helper helper = new Helper();
         private MemberDAL memberDAL;
+        private string name;
+        private string socialSecNo;
+
         public EditMemberView() {
             this.memberDAL = new MemberDAL();
         }
@@ -62,6 +65,59 @@ namespace TestPC.view
                 }
                 Console.WriteLine("{0}: {1}", element.Key, element.Value);
             }
+        }
+
+        public void showSelectedMemberWithoutBoats(string memberId)
+        {
+            List<KeyValuePair<string, string>> member = memberDAL.getMemberById(memberId);
+            Console.Clear();
+            this.helper.printDivider();
+            Console.WriteLine("REDIGERA MEDLEM MED MEDLEMSNUMMER " + memberId);
+            this.helper.printDivider();
+            Console.WriteLine();
+            Console.WriteLine("Lämna tomt för att behålla gammalt värde.\n");
+
+            foreach (var element in member)
+            {
+                
+                if (element.Key == memberDAL.getNameKey() || element.Key == memberDAL.getSocialSecNoKey())
+                {
+                    if (element.Key == memberDAL.getNameKey()) {
+                        name = element.Value;
+                    }
+                    if (element.Key == memberDAL.getSocialSecNoKey())
+                    {
+                        socialSecNo = element.Value;
+                    }
+                    Console.WriteLine("{0}: {1}", element.Key, element.Value);
+                }
+                
+                else{
+                    continue;
+                }
+            }
+        }
+
+        public Member editMember(string memberId)
+        {
+
+            Console.Write("Namn: ");
+            string newName = Console.ReadLine();
+            Console.Write("Personummer: ");
+            string newSocialSecNo = Console.ReadLine();
+
+            if (newName == "")
+            {
+                newName = name;
+            }
+            if (newSocialSecNo == "")
+            {
+                newSocialSecNo = socialSecNo;
+            }
+
+            Member editedMember = new Member(int.Parse(memberId), newName, newSocialSecNo);
+
+            return editedMember;
         }
 
     }

@@ -30,7 +30,7 @@ namespace TestPC.view
             this.memberName = Console.ReadLine();
             Console.Write("Ange personnummer: ");
             this.memberSocSecNo = Console.ReadLine();
-            Member newMember = new Member(this.memberName, this.memberSocSecNo);
+            Member newMember = new Member(0, this.memberName, this.memberSocSecNo);
 
             return newMember;
 

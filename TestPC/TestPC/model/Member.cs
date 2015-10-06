@@ -12,12 +12,19 @@ namespace TestPC.model
         string _memberName;
         string _memberSocSecNo;
 
-        public Member(string memberName, string memberSocSecNo)
+        public Member(int id, string memberName, string memberSocSecNo)
         {
+            if (id == 0)
+            {
+                MemberID memberId = new MemberID();
+                this._memberId = memberId.generateMemberId();
+            }
+            else {
+                this._memberId = id;
+            }
             this._memberName = memberName;
             this._memberSocSecNo = memberSocSecNo;
-            MemberID memberId = new MemberID();
-            this._memberId = memberId.generateMemberId();
+            
         }
 
         public string MemberName { get { return _memberName; } }

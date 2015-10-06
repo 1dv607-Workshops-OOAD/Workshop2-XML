@@ -39,6 +39,10 @@ namespace TestPC.model
             return socialSecNo;
         }
 
+        public string getNameKey() {
+            return name;
+        }
+
         public string getNumberOfBoatsKey()
         {
             return numberOfBoats;
@@ -140,6 +144,18 @@ namespace TestPC.model
         public void deleteMemberById(string memberId) {
             XDocument doc = XDocument.Load(path);
             doc.Root.Elements("Member").Where(e => e.Attribute("id").Value.Equals(memberId)).Select(e => e).Single().Remove(); 
+            doc.Save(path);
+        }
+
+        public void updateMemberById(Member editedMember) {
+            
+            XDocument doc = XDocument.Load(path);
+
+            var element = doc.Descendants("Member")
+                .Where(arg => arg.Attribute("id").Value == editedMember.MemberID.ToString())
+                .Single();
+            element.Attribute("name").Value = editedMember.MemberName;
+            element.Attribute("socialnumber").Value = editedMember.MemberSocSecNo;
             doc.Save(path);
         }
 
