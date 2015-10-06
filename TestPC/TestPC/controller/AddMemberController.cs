@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestPC.helper;
 using TestPC.model;
 using TestPC.view;
 
@@ -12,7 +13,8 @@ namespace TestPC.controller
     {
         private AddMemberView addMemberView;
         private MemberDAL memberDAL;
-        public AddMemberController(){
+        public AddMemberController()
+        {
             this.memberDAL = new MemberDAL();
             this.addMemberView = new AddMemberView();
             addNewMember();

@@ -25,7 +25,7 @@ namespace TestPC.view
             this.helper.printDivider();
             Console.WriteLine("LÄGG TILL EN BÅT");
             this.helper.printDivider();
-            Console.WriteLine("Välj medlemsnummer.\n");
+            Console.WriteLine("\nVälj medlemsnummer.\n");
         }
 
         public void showMemberList() 
@@ -48,7 +48,7 @@ namespace TestPC.view
             this.helper.printDivider();
             Console.WriteLine("LÄGG TILL EN BÅT");
             this.helper.printDivider();
-            Console.WriteLine("Ange båttyp:");
+            Console.WriteLine("\nAnge båttyp:");
             Console.WriteLine("1 för segelbåt,");
             Console.WriteLine("2 för kayak eller kanot,");
             Console.WriteLine("3 för motorseglare,");

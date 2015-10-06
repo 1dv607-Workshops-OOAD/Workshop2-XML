@@ -16,7 +16,8 @@ namespace TestPC.controller
         private string memberId;
         private string selectedBoatId;
 
-        public EditBoatController(string memberId) {
+        public EditBoatController(string memberId)
+        {
             this.memberDAL = new MemberDAL();
             this.editBoatView = new EditBoatView();
             this.memberId = memberId;
@@ -25,25 +26,25 @@ namespace TestPC.controller
             executeMenuChoice();
         }
 
-        public void showSelectedBoat() {
+        public void showSelectedBoat()
+        {
             selectedBoatId = editBoatView.getSelectedBoat();
             editBoatView.showEditBoatMenu(selectedBoatId, memberId);
         }
 
-        public void executeMenuChoice() {
+        public void executeMenuChoice()
+        {
             Helper.MenuChoice menuChoice = editBoatView.getEditBoatMenuChoice();
 
-            if(menuChoice == Helper.MenuChoice.Delete){
+            if (menuChoice == Helper.MenuChoice.Delete)
+            {
                 memberDAL.deleteBoatById(selectedBoatId, memberId);
-                StartController startController = new StartController();
             }
-            if(menuChoice == Helper.MenuChoice.Edit){
-
+            if (menuChoice == Helper.MenuChoice.Edit)
+            {
                 memberDAL.updateBoatById(editBoatView.editBoat(selectedBoatId), memberId);
-                StartController startController = new StartController();
             }
-
-
+            StartController startController = new StartController();
         }
     }
 }

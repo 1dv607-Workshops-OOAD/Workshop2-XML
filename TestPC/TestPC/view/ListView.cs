@@ -37,7 +37,6 @@ namespace TestPC.view
             this.helper.printDivider();
             Console.WriteLine("FÖRENKLAD MEDLEMSLISTA");
             this.helper.printDivider();
-            Console.WriteLine("Tryck B för att gå tillbaka till startmenyn.\n");
             foreach (var member in listMembers)
             {
                 if (member.Key == _memberDAL.getBoatTypeKey() || 

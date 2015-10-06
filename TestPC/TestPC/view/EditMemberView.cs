@@ -51,7 +51,6 @@ namespace TestPC.view
             Console.WriteLine("Ange T för att ta bort medlem.");
             Console.WriteLine("Ange R för att redigera medlem.");
             Console.WriteLine("Ange B för att redigera medlemmens båtar.");
-            Console.WriteLine("Ange S för att gå tillbaka till startmenyn.\n");
         }
 
         public void showSelectedMember(string memberId) {

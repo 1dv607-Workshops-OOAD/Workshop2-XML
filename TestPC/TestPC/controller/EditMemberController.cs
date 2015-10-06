@@ -15,7 +15,8 @@ namespace TestPC.controller
         private MemberDAL memberDAL;
         private EditMemberView editMemberView;
 
-        public EditMemberController(string selectedMember) {
+        public EditMemberController(string selectedMember)
+        {
             this.selectedMember = selectedMember;
             this.memberDAL = new MemberDAL();
             this.editMemberView = new EditMemberView();
@@ -23,7 +24,8 @@ namespace TestPC.controller
             executeMenuChoice(editMemberView.getMenuChoice());
         }
 
-        public void showMemberView(){
+        public void showMemberView()
+        {
             editMemberView.showEditMemberMenu();
             editMemberView.showSelectedMember(selectedMember);
         }
@@ -40,7 +42,6 @@ namespace TestPC.controller
                 editMemberView.showSelectedMemberWithoutBoats(selectedMember);
                 memberDAL.updateMemberById(editMemberView.editMember(selectedMember));
                 StartController startController = new StartController();
-                //memberDAL.updateMemberById(selectedMember);
             }
             if (menuChoice == Helper.MenuChoice.Boats)
             {
@@ -48,8 +49,8 @@ namespace TestPC.controller
             }
             if (menuChoice == Helper.MenuChoice.Back)
             {
+                StartController startController = new StartController();
             }
-
         }
     }
 }
