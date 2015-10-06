@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestPC.helper;
 using TestPC.view;
 
 namespace TestPC.controller
@@ -20,10 +21,16 @@ namespace TestPC.controller
             if (menuChoice == StartView.MenuChoice.CompactListMembers)
             {
                 _listView.showCompactList();
+                Helper.MenuChoice back = _listView.goToStartMenu();
+                if(back==Helper.MenuChoice.Back){
+                    StartController startController = new StartController();
+                }
             }
             else 
             {
-                _listView.showVerboseList();    
+                _listView.showVerboseList();
+                string selectedMember = _listView.getSelectedMember();
+                EditMemberController editMemberController = new EditMemberController(selectedMember);
             }
         }
 

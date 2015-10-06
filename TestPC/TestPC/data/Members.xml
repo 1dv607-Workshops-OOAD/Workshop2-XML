@@ -4,7 +4,6 @@
     <Boat boatType="Annan" boatLength="1" />
     <Boat boatType="Motorseglare" boatLength="2" />
   </Member>
-  <Member id="16" name="Testperson 2" socialnumber="123456-7890">
-    <Boat boatType="Kajak" boatLength="25" />
-  </Member>
+  <Member id="17" name="Caroline Forslund" socialnumber="123456-7890" />
+  <Member id="19" name="Ander Andersson" socialnumber="123456-7412" />
 </members>

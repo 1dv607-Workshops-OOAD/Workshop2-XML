@@ -25,13 +25,14 @@ namespace TestPC.view
 		}
 		public void showStartMenu()
 		{
+            Console.Clear();
 			this.helper.printDivider ();
 			Console.WriteLine("VÄLKOMMEN TILL BÅTKLUBBEN");
 			this.helper.printDivider ();
 			Console.WriteLine("Välj nedan vad du vill göra.");
 			Console.WriteLine("Tryck 1 för att lägga till medlem.");
 			Console.WriteLine("Tryck 2 för att visa medlemslista.");
-			Console.WriteLine("Tryck 3 för att visa utökad medlemslista."); 
+			Console.WriteLine("Tryck 3 för att visa utökad medlemslista och redigera medlemmar."); 
 			Console.WriteLine("Tryck 4 för att lägga till en båt.");
 		}
 

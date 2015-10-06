@@ -13,15 +13,6 @@ namespace TestPC.view
         private MemberDAL _memberDAL;
         private List<KeyValuePair<string, string>> listMembers = new List<KeyValuePair<string, string>>();
         Helper helper = new Helper();
-
-        public enum MenuChoice
-        {
-            DeleteMember,
-            EditMember,
-            Boats,
-            Back,
-            None
-        }
        
         public ListView()
         {
@@ -29,27 +20,14 @@ namespace TestPC.view
             listMembers = _memberDAL.listMembers();
         }
 
-        public MenuChoice GetMenuChoice()
-        {
+        public Helper.MenuChoice goToStartMenu() { 
             char menuChoice = System.Console.ReadKey().KeyChar;
-            if (menuChoice == '1')
+            if (menuChoice == 'B' || menuChoice == 'b')
             {
-                return MenuChoice.DeleteMember;
-            }
-            if (menuChoice == '2')
-            {
-                return MenuChoice.EditMember;
-            }
-            if (menuChoice == '3')
-            {
-                return MenuChoice.Boats;
-            }
-            if (menuChoice == '4')
-            {
-                return MenuChoice.Back;
+                return Helper.MenuChoice.Back;
             }
 
-            return MenuChoice.None;
+            return Helper.MenuChoice.None;
         }
 
         public void showCompactList()
@@ -59,11 +37,12 @@ namespace TestPC.view
             this.helper.printDivider();
             Console.WriteLine("FÖRENKLAD MEDLEMSLISTA");
             this.helper.printDivider();
+            Console.WriteLine("Tryck B för att gå tillbaka till startmenyn.\n");
             foreach (var member in listMembers)
             {
-                if (member.Key == _memberDAL.getBoatType() || 
-                    member.Key == _memberDAL.getBoatLength() ||
-                    member.Key == _memberDAL.getSocialSecNo())
+                if (member.Key == _memberDAL.getBoatTypeKey() || 
+                    member.Key == _memberDAL.getBoatLengthKey() ||
+                    member.Key == _memberDAL.getSocialSecNoKey())
                 {
                     continue;
                 }
@@ -77,10 +56,21 @@ namespace TestPC.view
             Console.WriteLine("UTÖKAD MEDLEMSLISTA");
             this.helper.printDivider();
 
+            Console.WriteLine("Ange medlemsId för att redigera en medlem.\n");
+
             foreach (var member in listMembers)
             {
+                if (member.Key == _memberDAL.getNumberOfBoatsKey()) {
+                    continue;
+                }
                 Console.WriteLine("{0}: {1}", member.Key, member.Value);
             }
+        }
+
+        public string getSelectedMember()
+        {
+            string memberId = Console.ReadLine();
+            return memberId;
         }
 
        

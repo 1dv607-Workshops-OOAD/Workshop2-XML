@@ -22,7 +22,7 @@ namespace TestPC.controller
         public void addNewMember()
         {
             this.memberDAL.saveMember(addMemberView.showAddMemberView());
-
+            StartController startController = new StartController();
         }
 
 

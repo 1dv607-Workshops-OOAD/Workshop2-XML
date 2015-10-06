@@ -30,10 +30,6 @@ namespace TestPC.controller
                 AddMemberController addMemberController = new AddMemberController();
             }
 
-            /*if (menuChoice == StartView.MenuChoice.CompactListMembers)
-            {
-                
-            }*/
             if (menuChoice == StartView.MenuChoice.VerboseListMembers || menuChoice == StartView.MenuChoice.CompactListMembers) 
             {
                 ListController listController = new ListController(menuChoice);

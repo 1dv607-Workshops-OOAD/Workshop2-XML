@@ -8,6 +8,15 @@ namespace TestPC.helper
 {
     public class Helper
     {
+        public enum MenuChoice
+        {
+            DeleteMember,
+            EditMember,
+            Boats,
+            Back,
+            None
+        }
+        
         public Helper()
         {
 
