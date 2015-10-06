@@ -10,13 +10,17 @@ namespace TestPC.model
     {
         string _boatType;
         string _boatLength;
+        int _boatId;
 
-        public Boat(string boatType, string boatLength)
+        public Boat(int boatId, string boatType, string boatLength)
         {
+            this._boatId = ++boatId;
             this._boatType = boatType;
             this._boatLength = boatLength;
         }
 
+
+        public int BoatId { get { return _boatId; } }
         public string BoatType { get { return _boatType; } }
         public string BoatLength { get { return _boatLength; } }
     }

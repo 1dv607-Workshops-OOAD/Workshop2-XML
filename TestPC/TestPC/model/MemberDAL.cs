@@ -18,6 +18,7 @@ namespace TestPC.model
         private string memberId = "MEDLEMSID";
         private string name = "Namn";
         private string numberOfBoats = "Antal båtar";
+        private string boatId = "BÅT-ID";
 
         private string path = "../../data/Members.xml";
         public MemberDAL()
@@ -39,7 +40,8 @@ namespace TestPC.model
             return socialSecNo;
         }
 
-        public string getNameKey() {
+        public string getNameKey()
+        {
             return name;
         }
 
@@ -58,7 +60,8 @@ namespace TestPC.model
                 {
                     if ((reader.NodeType == XmlNodeType.Element) && (reader.Name == "Member"))
                     {
-                        if (reader.HasAttributes) { 
+                        if (reader.HasAttributes)
+                        {
                             members.Add(new KeyValuePair<string, string>(this.memberId, reader.GetAttribute("id")));
                             members.Add(new KeyValuePair<string, string>(name, reader.GetAttribute("name")));
                             members.Add(new KeyValuePair<string, string>(socialSecNo, reader.GetAttribute("socialnumber")));
@@ -104,7 +107,8 @@ namespace TestPC.model
                 {
                     if ((reader.NodeType == XmlNodeType.Element) && (reader.Name == "Member"))
                     {
-                        if (reader.GetAttribute("id") == memberId){
+                        if (reader.GetAttribute("id") == memberId)
+                        {
                             member.Add(new KeyValuePair<string, string>(this.memberId, reader.GetAttribute("id")));
                             member.Add(new KeyValuePair<string, string>(name, reader.GetAttribute("name")));
                             member.Add(new KeyValuePair<string, string>(socialSecNo, reader.GetAttribute("socialnumber")));
@@ -112,10 +116,9 @@ namespace TestPC.model
                             // For each element that is a child of member with id = memberId
                             foreach (var item in doc.Descendants("Member").Elements("Boat").Where(e => e.Parent.Name == "Member" && e.Parent.Attribute("id").Value == memberId))
                             {
-                                var type = item.Attribute("boatType").Value;
-                                var length = item.Attribute("boatLength").Value;
-                                member.Add(new KeyValuePair<string, string>(boatType, type));
-                                member.Add(new KeyValuePair<string, string>(boatLength, length));
+                                member.Add(new KeyValuePair<string, string>(boatId, item.Attribute("boatId").Value));
+                                member.Add(new KeyValuePair<string, string>(boatType, item.Attribute("boatType").Value));
+                                member.Add(new KeyValuePair<string, string>(boatLength, item.Attribute("boatLength").Value));
                             }
 
                         }
@@ -141,14 +144,16 @@ namespace TestPC.model
 
         }
 
-        public void deleteMemberById(string memberId) {
+        public void deleteMemberById(string memberId)
+        {
             XDocument doc = XDocument.Load(path);
-            doc.Root.Elements("Member").Where(e => e.Attribute("id").Value.Equals(memberId)).Select(e => e).Single().Remove(); 
+            doc.Root.Elements("Member").Where(e => e.Attribute("id").Value.Equals(memberId)).Select(e => e).Single().Remove();
             doc.Save(path);
         }
 
-        public void updateMemberById(Member editedMember) {
-            
+        public void updateMemberById(Member editedMember)
+        {
+
             XDocument doc = XDocument.Load(path);
 
             var element = doc.Descendants("Member")
@@ -163,19 +168,68 @@ namespace TestPC.model
         {
             Console.WriteLine(memberId);
             XDocument doc = XDocument.Load(path);
-            //XElement memberRoot = new XElement("Member");
 
             doc.Element("members").Elements("Member")
             .First(c => (string)c.Attribute("id") == memberId).Add
                  (
                      new XElement
                          (
-                             "Boat", new XAttribute("boatType", newBoat.BoatType),
+                             "Boat", new XAttribute("boatId", newBoat.BoatId),
+                                        new XAttribute("boatType", newBoat.BoatType),
                                         new XAttribute("boatLength", newBoat.BoatLength)
                          )
                   );
             doc.Save(path);
         }
 
+        public List<KeyValuePair<string, string>> getBoatsByMemberId(string memberId)
+        {
+            List<KeyValuePair<string, string>> boats = new List<KeyValuePair<string, string>>();
+
+            using (XmlTextReader reader = new XmlTextReader(path))
+            {
+                XDocument doc = XDocument.Load(path);
+
+                while (reader.Read())
+                {
+                    if ((reader.NodeType == XmlNodeType.Element) && (reader.Name == "Member"))
+                    {
+                        foreach (var item in doc.Descendants("Member").Elements("Boat").Where(e => e.Parent.Name == "Member" && e.Parent.Attribute("id").Value == memberId))
+                        {
+                            boats.Add(new KeyValuePair<string, string>(boatId, item.Attribute("boatId").Value));
+                            boats.Add(new KeyValuePair<string, string>(boatType, item.Attribute("boatType").Value));
+                            boats.Add(new KeyValuePair<string, string>(boatLength, item.Attribute("boatLength").Value));
+                        }
+                    }
+                }
+            }
+            return boats;
+        }
+
+        public List<KeyValuePair<string, string>> getBoatById(string selectedBoatId)
+        {
+
+            List<KeyValuePair<string, string>> boat = new List<KeyValuePair<string, string>>();
+
+            using (XmlTextReader reader = new XmlTextReader(path))
+            {
+                XDocument doc = XDocument.Load(path);
+
+                while (reader.Read())
+                {
+                    if ((reader.NodeType == XmlNodeType.Element) && (reader.Name == "Boat"))
+                    {
+                        if (reader.GetAttribute("boatId") == selectedBoatId)
+                        {
+                            boat.Add(new KeyValuePair<string, string>(boatId, reader.GetAttribute("boatId")));
+                            boat.Add(new KeyValuePair<string, string>(boatType, reader.GetAttribute("boatType")));
+                            boat.Add(new KeyValuePair<string, string>(boatLength, reader.GetAttribute("boatLength")));
+                        }
+                    }
+                }
+
+                return boat;
+            }
+        }
     }
 }

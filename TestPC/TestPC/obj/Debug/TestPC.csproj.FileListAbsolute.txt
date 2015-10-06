@@ -9,4 +9,3 @@ C:\Users\Lisa\Documents\GitHub\1dv607\Workshop2-XML\TestPC\TestPC\bin\Debug\Test
 C:\Users\Lisa\Documents\GitHub\1dv607\Workshop2-XML\TestPC\TestPC\bin\Debug\TestPC.pdb
 C:\Users\Lisa\Documents\GitHub\1dv607\Workshop2-XML\TestPC\TestPC\obj\Debug\TestPC.exe
 C:\Users\Lisa\Documents\GitHub\1dv607\Workshop2-XML\TestPC\TestPC\obj\Debug\TestPC.pdb
-C:\Users\Lisa\Documents\GitHub\1dv607\Workshop2-XML\TestPC\TestPC\obj\Debug\TestPC.csprojResolveAssemblyReference.cache

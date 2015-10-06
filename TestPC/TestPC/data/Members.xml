@@ -1,10 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <members>
-  <Member id="15" name="Britta Westlund" socialnumber="111111111111">
-    <Boat boatType="Annan" boatLength="1" />
-    <Boat boatType="Motorseglare" boatLength="2" />
+  <Member id="21" name="Johanna" socialnumber="111111-1111">
+    <Boat boatId="1" boatType="Segelbåt" boatLength="12" />
+    <Boat boatId="2" boatType="Annan" boatLength="10" />
   </Member>
-  <Member id="17" name="Caroline Forslund" socialnumber="123456-7890" />
-  <Member id="19" name="Ander Andersson" socialnumber="123456-7412" />
-  <Member id="20" name="Johanna" socialnumber="123456-7412" />
 </members>

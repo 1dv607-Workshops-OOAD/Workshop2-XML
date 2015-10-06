@@ -24,8 +24,9 @@ namespace TestPC.controller
         }
 
         public void saveBoat() {
-            Boat newBoat = boatView.addBoat();
+            Boat newBoat = boatView.addBoat(selectedMember);
             memberDAL.saveBoat(newBoat, selectedMember);
+            StartController startController = new StartController();
         }
     }
 }

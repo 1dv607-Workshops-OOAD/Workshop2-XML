@@ -42,7 +42,7 @@ namespace TestPC.view
             return Console.ReadLine();
         }
 
-        public Boat addBoat()
+        public Boat addBoat(string selectedMember)
         {
             Console.Clear();
             this.helper.printDivider();
@@ -57,7 +57,7 @@ namespace TestPC.view
             Console.Write("Ange båtens längd: ");
             string boatLength = Console.ReadLine();
 
-            Boat newBoat = new Boat(boatType, boatLength);
+            Boat newBoat = new Boat(_memberDAL.getNumberOfBoats(selectedMember), boatType, boatLength);
 
             return newBoat;
 

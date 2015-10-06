@@ -44,6 +44,7 @@ namespace TestPC.controller
             }
             if (menuChoice == Helper.MenuChoice.Boats)
             {
+                EditBoatController editBoatcontroller = new EditBoatController(selectedMember);
             }
             if (menuChoice == Helper.MenuChoice.Back)
             {

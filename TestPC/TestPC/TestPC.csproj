@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="controller\AddBoatController.cs" />
     <Compile Include="controller\AddMemberController.cs" />
+    <Compile Include="controller\EditBoatController.cs" />
     <Compile Include="controller\EditMemberController.cs" />
     <Compile Include="controller\ListController.cs" />
     <Compile Include="controller\StartController.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="view\AddMemberView.cs" />
     <Compile Include="view\AddBoatView.cs" />
+    <Compile Include="view\EditBoatView.cs" />
     <Compile Include="view\EditMemberView.cs" />
     <Compile Include="view\ListView.cs" />
     <Compile Include="view\StartView.cs" />
