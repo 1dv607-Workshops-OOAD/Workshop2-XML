@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TestPC.helper;
-using TestPC.view;
+using BoatClub.helper;
+using BoatClub.view;
 
-namespace TestPC.controller
+namespace BoatClub.controller
 {
     class ListController
     {

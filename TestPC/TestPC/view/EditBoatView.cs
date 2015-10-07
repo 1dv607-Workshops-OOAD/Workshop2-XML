@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TestPC.helper;
-using TestPC.model;
+using BoatClub.helper;
+using BoatClub.model;
 
-namespace TestPC.view
+namespace BoatClub.view
 {
     class EditBoatView
     {

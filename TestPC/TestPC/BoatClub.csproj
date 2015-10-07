@@ -7,7 +7,7 @@
     <ProjectGuid>{982F9EC3-B5CE-4551-82D5-1F57709BD679}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestPC</RootNamespace>
+    <RootNamespace>BoatClub</RootNamespace>
     <AssemblyName>TestPC</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

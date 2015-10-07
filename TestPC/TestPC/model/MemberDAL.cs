@@ -8,7 +8,7 @@ using System.Xml.Linq;
 using System.Xml.Serialization;
 using System.Xml.XmlConfiguration;
 
-namespace TestPC.model
+namespace BoatClub.model
 {
     class MemberDAL
     {

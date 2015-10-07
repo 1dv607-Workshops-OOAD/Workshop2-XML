@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Members>
-  <Member memberId="25" name="Caroline Forslund" socialSecNo="123456-7890">
+  <Member memberId="27" name="Johanna" socialSecNo="1111111111">
     <Boat boatId="1" boatType="Segelbåt" boatLength="12" />
-    <Boat boatId="2" boatType="Motorseglare" boatLength="23" />
+    <Boat boatId="2" boatType="Motorseglare" boatLength="12" />
   </Member>
 </Members>

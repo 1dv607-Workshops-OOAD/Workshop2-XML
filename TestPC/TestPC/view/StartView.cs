@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TestPC.helper;
+using BoatClub.helper;
 
-namespace TestPC.view
+namespace BoatClub.view
 {
 
     public class StartView
