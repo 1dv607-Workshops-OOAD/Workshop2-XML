@@ -14,7 +14,7 @@ namespace TestPC.model
 
         public Boat(int boatId, string boatType, string boatLength, string selectedMember)
         {
-            MemberDAL _memberDAL = new MemberDAL(); 
+            MemberDAL _memberDAL = new MemberDAL();
 
             if (boatId == 0)
             {
@@ -28,10 +28,8 @@ namespace TestPC.model
             this._boatLength = boatLength;
         }
 
-
         public int BoatId { get { return _boatId; } }
         public string BoatType { get { return _boatType; } }
         public string BoatLength { get { return _boatLength; } }
     }
-    
 }

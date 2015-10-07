@@ -19,17 +19,16 @@ namespace TestPC.model
                 MemberID memberId = new MemberID();
                 this._memberId = memberId.generateMemberId();
             }
-            else {
+            else
+            {
                 this._memberId = id;
             }
             this._memberName = memberName;
             this._memberSocSecNo = memberSocSecNo;
-            
         }
 
         public string MemberName { get { return _memberName; } }
         public string MemberSocSecNo { get { return _memberSocSecNo; } }
-        public int MemberID { get { return _memberId; } 
-        }
+        public int MemberID { get { return _memberId; } }
     }
 }

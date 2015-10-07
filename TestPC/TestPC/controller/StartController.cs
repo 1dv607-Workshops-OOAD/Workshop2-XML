@@ -10,33 +10,34 @@ namespace TestPC.controller
 {
     public class StartController
     {
-        private StartView _startView;
-        private MemberDAL _memberDAL;
-        private ListView listView = new ListView();
+        private StartView startView;
+        private MemberDAL memberDAL;
+        private ListView listView;
 
         public StartController()
         {
-            _memberDAL = new MemberDAL();
-            _startView = new StartView();
-            _startView.showStartMenu();
+            this.memberDAL = new MemberDAL();
+            this.startView = new StartView();
+            this.listView = new ListView();
+            startView.showStartMenu();
             executeMenuChoice();
         }
 
         public void executeMenuChoice()
         {
-            StartView.MenuChoice menuChoice = _startView.GetMenuChoice();
+            StartView.MenuChoice menuChoice = startView.GetMenuChoice();
             if (menuChoice == StartView.MenuChoice.AddMember)
             {
                 AddMemberController addMemberController = new AddMemberController();
             }
-
-            if (menuChoice == StartView.MenuChoice.VerboseListMembers || menuChoice == StartView.MenuChoice.CompactListMembers) 
+            if (menuChoice == StartView.MenuChoice.VerboseListMembers || 
+                menuChoice == StartView.MenuChoice.CompactListMembers)
             {
                 ListController listController = new ListController(menuChoice);
             }
             if (menuChoice == StartView.MenuChoice.AddBoat)
             {
-                AddBoatController addBoatController = new AddBoatController(); 
+                AddBoatController addBoatController = new AddBoatController();
             }
         }
     }

@@ -9,10 +9,6 @@ namespace TestPC.model
 {
     class MemberID
     {
-        public MemberID()
-        {
-        }
-
         private string path = "../../data/MemberID.txt";
         private int count;
 
@@ -35,7 +31,6 @@ namespace TestPC.model
             return this.count;
         }
 
-        //Save number of generated memberId's to file
         public void writeToFile()
         {
             using (StreamWriter write = new StreamWriter(path, false))

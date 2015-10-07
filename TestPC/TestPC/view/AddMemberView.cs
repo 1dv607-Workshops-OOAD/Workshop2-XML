@@ -12,7 +12,7 @@ namespace TestPC.view
     {
         private string memberName;
         private string memberSocSecNo;
-        Helper helper;
+        private Helper helper;
 
         public AddMemberView()
         {
@@ -26,14 +26,13 @@ namespace TestPC.view
             Console.WriteLine("LÄGG TILL MEDLEM");
             this.helper.printDivider();
 
-            Console.Write("Ange namn: ");
+            Console.Write("\nAnge namn: ");
             this.memberName = Console.ReadLine();
             Console.Write("Ange personnummer: ");
             this.memberSocSecNo = Console.ReadLine();
             Member newMember = new Member(0, this.memberName, this.memberSocSecNo);
 
             return newMember;
-
         }
     }
 }

@@ -10,12 +10,14 @@ namespace TestPC.view
 {
     class EditMemberView
     {
-        Helper helper = new Helper();
+        Helper helper;
         private MemberDAL memberDAL;
         private string name;
         private string socialSecNo;
 
-        public EditMemberView() {
+        public EditMemberView()
+        {
+            this.helper = new Helper();
             this.memberDAL = new MemberDAL();
         }
 
@@ -42,18 +44,21 @@ namespace TestPC.view
             return Helper.MenuChoice.None;
         }
 
-        public void showEditMemberMenu() {
+        public void showEditMemberMenu()
+        {
             Console.Clear();
-            this.helper.printDivider();
+            helper.printDivider();
             Console.WriteLine("VALD MEDLEM");
-            this.helper.printDivider();
+            helper.printDivider();
 
-            Console.WriteLine("Ange T för att ta bort medlem.");
+            Console.WriteLine("\nAnge T för att ta bort medlem.");
             Console.WriteLine("Ange R för att redigera medlem.");
             Console.WriteLine("Ange B för att redigera medlemmens båtar.");
+            helper.getBackToStartMessage();
         }
 
-        public void showSelectedMember(string memberId) {
+        public void showSelectedMember(string memberId)
+        {
             List<KeyValuePair<string, string>> member = memberDAL.getMemberById(memberId);
 
             foreach (var element in member)
@@ -70,18 +75,18 @@ namespace TestPC.view
         {
             List<KeyValuePair<string, string>> member = memberDAL.getMemberById(memberId);
             Console.Clear();
-            this.helper.printDivider();
+            helper.printDivider();
             Console.WriteLine("REDIGERA MEDLEM MED MEDLEMSNUMMER " + memberId);
-            this.helper.printDivider();
+            helper.printDivider();
             Console.WriteLine();
             Console.WriteLine("Lämna tomt för att behålla gammalt värde.\n");
 
             foreach (var element in member)
             {
-                
                 if (element.Key == memberDAL.getNameKey() || element.Key == memberDAL.getSocialSecNoKey())
                 {
-                    if (element.Key == memberDAL.getNameKey()) {
+                    if (element.Key == memberDAL.getNameKey())
+                    {
                         name = element.Value;
                     }
                     if (element.Key == memberDAL.getSocialSecNoKey())
@@ -90,8 +95,9 @@ namespace TestPC.view
                     }
                     Console.WriteLine("{0}: {1}", element.Key, element.Value);
                 }
-                
-                else{
+
+                else
+                {
                     continue;
                 }
             }
@@ -99,7 +105,6 @@ namespace TestPC.view
 
         public Member editMember(string memberId)
         {
-
             Console.Write("Namn: ");
             string newName = Console.ReadLine();
             Console.Write("Personummer: ");
@@ -118,6 +123,5 @@ namespace TestPC.view
 
             return editedMember;
         }
-
     }
 }

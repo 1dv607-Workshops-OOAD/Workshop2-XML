@@ -10,29 +10,31 @@ namespace TestPC.controller
 {
     class ListController
     {
-        private ListView _listView;
-        
-        public ListController(StartView.MenuChoice menuChoice){
-            this._listView = new ListView();
+        private ListView listView;
+
+        public ListController(StartView.MenuChoice menuChoice)
+        {
+            this.listView = new ListView();
             executeMenuChoice(menuChoice);
         }
 
-        public void executeMenuChoice(StartView.MenuChoice menuChoice) {
+        public void executeMenuChoice(StartView.MenuChoice menuChoice)
+        {
             if (menuChoice == StartView.MenuChoice.CompactListMembers)
             {
-                _listView.showCompactList();
-                Helper.MenuChoice back = _listView.goToStartMenu();
-                if(back==Helper.MenuChoice.Back){
+                listView.showCompactList();
+                Helper.MenuChoice back = listView.goToStartMenu();
+                if (back == Helper.MenuChoice.Back)
+                {
                     StartController startController = new StartController();
                 }
             }
-            else 
+            else
             {
-                _listView.showVerboseList();
-                string selectedMember = _listView.getSelectedMember();
+                listView.showVerboseList();
+                string selectedMember = listView.getSelectedMember();
                 EditMemberController editMemberController = new EditMemberController(selectedMember);
             }
         }
-
     }
 }

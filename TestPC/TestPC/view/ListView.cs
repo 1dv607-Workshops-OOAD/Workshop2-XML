@@ -10,38 +10,39 @@ namespace TestPC.view
 {
     class ListView
     {
-        private MemberDAL _memberDAL;
-        private List<KeyValuePair<string, string>> listMembers = new List<KeyValuePair<string, string>>();
-        Helper helper = new Helper();
+        private MemberDAL memberDAL;
+        private List<KeyValuePair<string, string>> listMembers;
+        private Helper helper;
        
         public ListView()
         {
-            this._memberDAL = new MemberDAL();
-            listMembers = _memberDAL.listMembers();
+            this.memberDAL = new MemberDAL();
+            this.listMembers = new List<KeyValuePair<string, string>>();
+            this.helper = new Helper();
+            listMembers = memberDAL.listMembers();
         }
 
         public Helper.MenuChoice goToStartMenu() { 
-            char menuChoice = System.Console.ReadKey().KeyChar;
-            if (menuChoice == 'B' || menuChoice == 'b')
+            string menuChoice = Console.ReadLine().ToUpper();
+            if (menuChoice == "S")
             {
                 return Helper.MenuChoice.Back;
             }
-
             return Helper.MenuChoice.None;
         }
 
         public void showCompactList()
         {
-            //Denna ska skrivas om till en compact list!
             Console.Clear();
-            this.helper.printDivider();
+            helper.printDivider();
             Console.WriteLine("FÖRENKLAD MEDLEMSLISTA");
-            this.helper.printDivider();
+            helper.printDivider();
+            helper.getBackToStartMessage();
             foreach (var member in listMembers)
             {
-                if (member.Key == _memberDAL.getBoatTypeKey() || 
-                    member.Key == _memberDAL.getBoatLengthKey() ||
-                    member.Key == _memberDAL.getSocialSecNoKey())
+                if (member.Key == memberDAL.getBoatTypeKey() || 
+                    member.Key == memberDAL.getBoatLengthKey() ||
+                    member.Key == memberDAL.getSocialSecNoKey())
                 {
                     continue;
                 }
@@ -55,11 +56,11 @@ namespace TestPC.view
             Console.WriteLine("UTÖKAD MEDLEMSLISTA");
             this.helper.printDivider();
 
-            Console.WriteLine("Ange medlemsId för att redigera en medlem.\n");
+            Console.WriteLine("\nAnge medlemsId för att redigera en medlem.\n");
 
             foreach (var member in listMembers)
             {
-                if (member.Key == _memberDAL.getNumberOfBoatsKey()) {
+                if (member.Key == memberDAL.getNumberOfBoatsKey()) {
                     continue;
                 }
                 Console.WriteLine("{0}: {1}", member.Key, member.Value);
@@ -70,8 +71,6 @@ namespace TestPC.view
         {
             string memberId = Console.ReadLine();
             return memberId;
-        }
-
-       
+        }    
     }
 }

@@ -10,7 +10,7 @@ namespace TestPC.view
 {
     class EditBoatView
     {
-        Helper helper = new Helper();
+        private Helper helper;
         private MemberDAL memberDAL;
         private string boatId;
         private string boatType;
@@ -18,6 +18,7 @@ namespace TestPC.view
         private string memberId;
 
         public EditBoatView() {
+            this.helper = new Helper();
             this.memberDAL = new MemberDAL();
         }
 
@@ -33,7 +34,7 @@ namespace TestPC.view
             Console.WriteLine("MEDLEM " + memberId + ":S BÅTAR");
             this.helper.printDivider();
 
-            Console.WriteLine("\nAnge båtens id för att redigera eller radera.");
+            Console.WriteLine("\nAnge båtens id för att redigera eller radera.\n");
 
             foreach (var boat in boats)
             {
@@ -73,7 +74,6 @@ namespace TestPC.view
 
         public Helper.MenuChoice getEditBoatMenuChoice()
         {
-
             string menuChoice = Console.ReadLine().ToUpper();
             if (menuChoice == "T")
             {
@@ -83,23 +83,17 @@ namespace TestPC.view
             {
                 return Helper.MenuChoice.Edit;
             }
-
             return Helper.MenuChoice.None;
         }
 
         public Boat editBoat(string selectedBoatId) {
             Console.Clear();
-            this.helper.printDivider();
+            helper.printDivider();
             Console.WriteLine("REDIGERA BÅT MED ID " + selectedBoatId + "\n");
-            this.helper.printDivider();
-
-            Console.WriteLine("Ange båttyp:");
-            Console.WriteLine("1 för segelbåt,");
-            Console.WriteLine("2 för kayak eller kanot,");
-            Console.WriteLine("3 för motorseglare,");
-            Console.WriteLine("4 för annan typ.\n");
+            helper.printDivider();
+            helper.getBoatTypeMenu();
             string newBoatType = setBoatType(Console.ReadLine());
-            Console.Write("Båtlängd: ");
+            Console.Write("Båtlängd: \n");
             string newBoatLength = Console.ReadLine();
 
             if (newBoatLength == "")
@@ -114,7 +108,6 @@ namespace TestPC.view
 
         public string setBoatType(string input)
         {
-
             string boatType = "";
 
             if (input == "1")
