@@ -4,4 +4,5 @@
     <Boat boatId="1" boatType="Segelbåt" boatLength="12" />
     <Boat boatId="2" boatType="Motorseglare" boatLength="12" />
   </Member>
+  <Member memberId="28" name="Lisa" socialSecNo="123456-7890" />
 </Members>
