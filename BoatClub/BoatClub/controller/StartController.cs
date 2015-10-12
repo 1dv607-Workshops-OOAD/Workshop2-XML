@@ -11,14 +11,10 @@ namespace BoatClub.controller
     public class StartController
     {
         private StartView startView;
-        private MemberDAL memberDAL;
-        private ListView listView;
 
         public StartController()
         {
-            this.memberDAL = new MemberDAL();
             this.startView = new StartView();
-            this.listView = new ListView();
             executeMenuChoice();
         }
 

@@ -12,13 +12,11 @@ namespace BoatClub.controller
     class EditMemberController
     {
         private string selectedMember;
-        private MemberDAL memberDAL;
         private EditMemberView editMemberView;
 
         public EditMemberController(string selectedMember)
         {
             this.selectedMember = selectedMember;
-            this.memberDAL = new MemberDAL();
             this.editMemberView = new EditMemberView();
             showMemberView();
             executeMenuChoice(editMemberView.getMenuChoice());
@@ -32,6 +30,8 @@ namespace BoatClub.controller
 
         public void executeMenuChoice(Helper.MenuChoice menuChoice)
         {
+            MemberDAL memberDAL = new MemberDAL();
+
             if (menuChoice == Helper.MenuChoice.Boats)
             {
                 EditBoatController editBoatcontroller = new EditBoatController(selectedMember);

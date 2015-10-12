@@ -11,13 +11,12 @@ namespace BoatClub.controller
     class AddBoatController
     {
         private AddBoatView boatView;
-        private MemberDAL memberDAL;
+        
         private string choice;
 
         public AddBoatController()
         {
             this.boatView = new AddBoatView();
-            this.memberDAL = new MemberDAL();
             boatView.showAddBoatMenu();
             boatView.showMemberList();
             choice = boatView.getChoice();
@@ -33,6 +32,7 @@ namespace BoatClub.controller
 
         public void saveBoat()
         {
+            MemberDAL memberDAL = new MemberDAL();
             Boat newBoat = boatView.addBoat(choice);
             memberDAL.saveBoat(newBoat, choice);
             StartController startController = new StartController();

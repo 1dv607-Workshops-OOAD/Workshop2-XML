@@ -21,7 +21,6 @@ namespace BoatClub.view
 
         public Member showAddMemberView()
         {
-            
             Console.Clear();
             helper.printDivider();
             Console.WriteLine("LÄGG TILL MEDLEM");
