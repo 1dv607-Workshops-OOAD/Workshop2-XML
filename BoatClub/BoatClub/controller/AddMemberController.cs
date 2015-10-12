@@ -18,7 +18,6 @@ namespace BoatClub.controller
             this.memberDAL = new MemberDAL();
             this.addMemberView = new AddMemberView();
             addNewMember();
-
         }
 
         public void addNewMember()

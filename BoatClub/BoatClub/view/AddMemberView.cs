@@ -10,8 +10,8 @@ namespace BoatClub.view
 {
     class AddMemberView
     {
-        private string memberName;
-        private string memberSocSecNo;
+        private string memberName = "";
+        private string memberSocSecNo = "";
         private Helper helper;
 
         public AddMemberView()
@@ -21,15 +21,22 @@ namespace BoatClub.view
 
         public Member showAddMemberView()
         {
+            
             Console.Clear();
-            this.helper.printDivider();
+            helper.printDivider();
             Console.WriteLine("LÄGG TILL MEDLEM");
-            this.helper.printDivider();
+            helper.printDivider();
 
-            Console.Write("\nAnge namn: ");
-            this.memberName = Console.ReadLine();
-            Console.Write("Ange personnummer: ");
-            this.memberSocSecNo = Console.ReadLine();
+            while(memberName == ""){
+                Console.Write("\nAnge namn: ");
+                memberName = Console.ReadLine();
+            }
+            
+            while(memberSocSecNo == ""){
+                Console.Write("Ange personnummer: ");
+                memberSocSecNo = Console.ReadLine();
+            }
+            
             Member newMember = new Member(0, this.memberName, this.memberSocSecNo);
 
             return newMember;

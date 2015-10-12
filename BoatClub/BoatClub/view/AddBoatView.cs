@@ -43,15 +43,16 @@ namespace BoatClub.view
 
         public string getChoice()
         {
-            string selectedMember = Console.ReadLine();
+            //Returns selected member or S for start menu
+            string choice = Console.ReadLine();
             try {
-                List<KeyValuePair<string, string>> member = memberDAL.getMemberById(selectedMember);
+                List<KeyValuePair<string, string>> member = memberDAL.getMemberById(choice);
             }
 
             catch(Exception){
                 memberExists = false;
             }
-            return selectedMember;
+            return choice;
         }
 
         public bool doesMemberExist() {

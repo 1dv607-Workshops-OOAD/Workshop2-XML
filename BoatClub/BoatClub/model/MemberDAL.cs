@@ -232,10 +232,16 @@ namespace BoatClub.model
                             boat.Add(new KeyValuePair<string, string>(boatType, reader.GetAttribute(XMLAttributeBoatType)));
                             boat.Add(new KeyValuePair<string, string>(boatLength, reader.GetAttribute(XMLAttributeBoatLength)));
                         }
-                        else {
-                            throw new Exception();
-                        }
                     }
+                    //else
+                    //{
+                    //    throw new Exception();
+                    //}
+                }
+
+                if (boat.Count == 0)
+                {
+                    throw new Exception();
                 }
                 return boat;
             }

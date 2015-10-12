@@ -79,42 +79,36 @@ namespace BoatClub.view
 
         public void showSelectedMemberWithoutBoats(string memberId)
         {
-           // try
-           // {
-                List<KeyValuePair<string, string>> member = memberDAL.getMemberById(memberId);
-                Console.Clear();
-                helper.printDivider();
-                Console.WriteLine("REDIGERA MEDLEM MED MEDLEMSNUMMER " + memberId);
-                helper.printDivider();
-                Console.WriteLine();
-                Console.WriteLine("Lämna tomt för att behålla gammalt värde.\n");
 
-                foreach (var element in member)
+            List<KeyValuePair<string, string>> member = memberDAL.getMemberById(memberId);
+            Console.Clear();
+            helper.printDivider();
+            Console.WriteLine("REDIGERA MEDLEM MED MEDLEMSNUMMER " + memberId);
+            helper.printDivider();
+            Console.WriteLine();
+            Console.WriteLine("Lämna tomt för att behålla gammalt värde.\n");
+
+            foreach (var element in member)
+            {
+                if (element.Key == memberDAL.getNameKey() || element.Key == memberDAL.getSocialSecNoKey())
                 {
-                    if (element.Key == memberDAL.getNameKey() || element.Key == memberDAL.getSocialSecNoKey())
+                    if (element.Key == memberDAL.getNameKey())
                     {
-                        if (element.Key == memberDAL.getNameKey())
-                        {
-                            name = element.Value;
-                        }
-                        if (element.Key == memberDAL.getSocialSecNoKey())
-                        {
-                            socialSecNo = element.Value;
-                        }
-                        Console.WriteLine("{0}: {1}", element.Key, element.Value);
+                        name = element.Value;
                     }
-
-                    else
+                    if (element.Key == memberDAL.getSocialSecNoKey())
                     {
-                        continue;
+                        socialSecNo = element.Value;
                     }
+                    Console.WriteLine("{0}: {1}", element.Key, element.Value);
                 }
-           // }
-            //catch (Exception)
-            //{
-            //    Console.WriteLine("Medlemmen finns inte! Tryck S för att gå tillbaka till startmenyn.");
-            //}
-        }
+
+                else
+                {
+                    continue;
+                }
+            }
+    }
 
         public Member editMember(string memberId)
         {

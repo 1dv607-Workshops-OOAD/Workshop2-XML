@@ -32,8 +32,14 @@ namespace BoatClub.controller
             else
             {
                 listView.showVerboseList();
-                string selectedMember = listView.getSelectedMember();
-                EditMemberController editMemberController = new EditMemberController(selectedMember);
+                string choice = listView.getChoice();
+
+                if (choice.ToUpper() == "S")
+                {
+                    StartController startController = new StartController();
+                }
+
+                EditMemberController editMemberController = new EditMemberController(choice);
             }
         }
     }

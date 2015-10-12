@@ -27,7 +27,7 @@ namespace BoatClub.view
             if (memberDAL.getNumberOfBoats(memberId) == 0)
             {
                 Console.Clear();
-                Console.WriteLine("Medlemmar har inga båtar att radera.");
+                Console.WriteLine("Medlemmen har inga båtar.");
                 helper.getBackToStartMessage();
             }
 

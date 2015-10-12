@@ -58,7 +58,8 @@ namespace BoatClub.view
             Console.WriteLine("UTÖKAD MEDLEMSLISTA");
             this.helper.printDivider();
 
-            Console.WriteLine("\nAnge medlemsId för att redigera en medlem.\n");
+            Console.WriteLine("\nAnge medlemsId för att redigera en medlem.");
+            helper.getBackToStartMessage();
 
             foreach (var member in listMembers)
             {
@@ -69,10 +70,11 @@ namespace BoatClub.view
             }
         }
 
-        public string getSelectedMember()
+        public string getChoice()
         {
-            string memberId = Console.ReadLine();
-            return memberId;
+            //Returns selected member or S for start menu
+            string choice = Console.ReadLine();
+            return choice;
         }    
     }
 }
