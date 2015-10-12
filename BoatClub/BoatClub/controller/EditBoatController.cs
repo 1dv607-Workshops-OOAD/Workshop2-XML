@@ -29,6 +29,9 @@ namespace BoatClub.controller
         public void showSelectedBoat()
         {
             selectedBoatId = editBoatView.getSelectedBoat();
+            if(selectedBoatId.ToUpper() == "S"){
+                StartController startController = new StartController();
+            }
             editBoatView.showEditBoatMenu(selectedBoatId, memberId);
         }
 

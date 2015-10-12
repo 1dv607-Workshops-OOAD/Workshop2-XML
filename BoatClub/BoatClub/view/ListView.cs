@@ -28,7 +28,9 @@ namespace BoatClub.view
             {
                 return Helper.MenuChoice.Back;
             }
-            return Helper.MenuChoice.None;
+            else {
+                return Helper.MenuChoice.None;
+            }
         }
 
         public void showCompactList()

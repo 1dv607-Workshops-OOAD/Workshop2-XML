@@ -19,12 +19,12 @@ namespace BoatClub.controller
             this.memberDAL = new MemberDAL();
             this.startView = new StartView();
             this.listView = new ListView();
-            startView.showStartMenu();
             executeMenuChoice();
         }
 
         public void executeMenuChoice()
         {
+            startView.showStartMenu();
             StartView.MenuChoice menuChoice = startView.GetMenuChoice();
             if (menuChoice == StartView.MenuChoice.AddMember)
             {
@@ -38,6 +38,10 @@ namespace BoatClub.controller
             if (menuChoice == StartView.MenuChoice.AddBoat)
             {
                 AddBoatController addBoatController = new AddBoatController();
+            }
+            if(menuChoice == StartView.MenuChoice.None){
+                startView = new StartView();
+                executeMenuChoice();
             }
         }
     }

@@ -13,6 +13,7 @@ namespace BoatClub.view
         private List<KeyValuePair<string, string>> listMembers;
         private Helper helper;
         private MemberDAL memberDAL;
+        private bool memberExists = true;
 
         public AddBoatView()
         {
@@ -40,21 +41,44 @@ namespace BoatClub.view
             }
         }
 
-        public string getSelectedMember()
+        public string getChoice()
         {
-            return Console.ReadLine();
+            string selectedMember = Console.ReadLine();
+            try {
+                List<KeyValuePair<string, string>> member = memberDAL.getMemberById(selectedMember);
+            }
+
+            catch(Exception){
+                memberExists = false;
+            }
+            return selectedMember;
+        }
+
+        public bool doesMemberExist() {
+            return memberExists;
         }
 
         public Boat addBoat(string selectedMember)
         {
+            string boatType = "";
+            string boatLength = ""; 
+            
             Console.Clear();
             helper.printDivider();
             Console.WriteLine("LÄGG TILL EN BÅT");
             helper.printDivider();
-            helper.getBoatTypeMenu();
-            string boatType = setBoatType(Console.ReadLine());
-            Console.Write("Ange båtens längd: \n");
-            string boatLength = Console.ReadLine();
+            
+            while (boatType == "")
+            {
+                helper.getBoatTypeMenu();
+                boatType = setBoatType(Console.ReadLine());
+            }
+
+            while(boatLength == ""){
+                Console.Write("Ange båtens längd: \n"); 
+                boatLength = Console.ReadLine();
+            }
+            
 
             Boat newBoat = new Boat(0, boatType, boatLength, selectedMember);
             return newBoat;

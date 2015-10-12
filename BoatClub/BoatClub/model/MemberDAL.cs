@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BoatClub.helper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,13 +13,15 @@ namespace BoatClub.model
 {
     class MemberDAL
     {
-        private string boatType = "Båttyp";
-        private string boatLength = "Båtlängd";
-        private string socialSecNo = "Personnummer";
-        private string memberId = "MEDLEMSID";
-        private string name = "Namn";
-        private string numberOfBoats = "Antal båtar";
-        private string boatId = "BÅT-ID";
+        private Helper helper;
+
+        private string boatType;
+        private string boatLength;
+        private string socialSecNo;
+        private string memberId;
+        private string name;
+        private string numberOfBoats;
+        private string boatId;
 
         private string path = "../../data/Members.xml";
 
@@ -31,6 +34,19 @@ namespace BoatClub.model
         private string XMLAttributeBoatId = "boatId";
         private string XMLAttributeBoatType = "boatType";
         private string XMLAttributeBoatLength = "boatLength";
+
+        public MemberDAL()
+        {
+            this.helper = new Helper();
+
+            boatType = helper.BoatType;
+            boatLength = helper.BoatLength;
+            socialSecNo = helper.SocialSecNo;
+            memberId = helper.MemberId;
+            name = helper.Name;
+            numberOfBoats = helper.NumberOfBoats;
+            boatId = helper.BoatId;
+        }
 
         public string getBoatTypeKey()
         {
@@ -125,6 +141,11 @@ namespace BoatClub.model
                         }
                     }
                 }
+
+                if(member.Count == 0){
+                    throw new Exception();
+                }
+               
                 return member;
             }
         }
@@ -182,22 +203,16 @@ namespace BoatClub.model
             using (XmlTextReader reader = new XmlTextReader(path))
             {
                 XDocument doc = XDocument.Load(path);
-                while (reader.Read())
+                foreach (var item in doc.Descendants(XMLElementMember).Elements(XMLElementBoat)
+                        .Where(e => e.Parent.Name == XMLElementMember &&
+                        e.Parent.Attribute(XMLAttributeMemberId).Value == memberId))
                 {
-                    if ((reader.NodeType == XmlNodeType.Element) && (reader.Name == XMLElementMember))
-                    {
-                        foreach (var item in doc.Descendants(XMLElementMember).Elements(XMLElementBoat)
-                                .Where(e => e.Parent.Name == XMLElementMember &&
-                                e.Parent.Attribute(XMLAttributeMemberId).Value == memberId))
-                        {
-                            boats.Add(new KeyValuePair<string, string>(boatId, item.Attribute(XMLAttributeBoatId).Value));
-                            boats.Add(new KeyValuePair<string, string>(boatType, item.Attribute(XMLAttributeBoatType).Value));
-                            boats.Add(new KeyValuePair<string, string>(boatLength, item.Attribute(XMLAttributeBoatLength).Value));
-                        }
-                    }
+                    boats.Add(new KeyValuePair<string, string>(boatId, item.Attribute(XMLAttributeBoatId).Value));
+                    boats.Add(new KeyValuePair<string, string>(boatType, item.Attribute(XMLAttributeBoatType).Value));
+                    boats.Add(new KeyValuePair<string, string>(boatLength, item.Attribute(XMLAttributeBoatLength).Value));
                 }
             }
-            
+
             return boats;
         }
 
@@ -216,6 +231,9 @@ namespace BoatClub.model
                             boat.Add(new KeyValuePair<string, string>(boatId, reader.GetAttribute(XMLAttributeBoatId)));
                             boat.Add(new KeyValuePair<string, string>(boatType, reader.GetAttribute(XMLAttributeBoatType)));
                             boat.Add(new KeyValuePair<string, string>(boatLength, reader.GetAttribute(XMLAttributeBoatLength)));
+                        }
+                        else {
+                            throw new Exception();
                         }
                     }
                 }

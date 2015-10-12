@@ -23,8 +23,8 @@ namespace BoatClub.controller
             if (menuChoice == StartView.MenuChoice.CompactListMembers)
             {
                 listView.showCompactList();
-                Helper.MenuChoice back = listView.goToStartMenu();
-                if (back == Helper.MenuChoice.Back)
+                Helper.MenuChoice choice = listView.goToStartMenu();
+                if (choice == Helper.MenuChoice.Back || choice == Helper.MenuChoice.None)
                 {
                     StartController startController = new StartController();
                 }

@@ -12,7 +12,7 @@ namespace BoatClub.controller
     {
         private AddBoatView boatView;
         private MemberDAL memberDAL;
-        private string selectedMember;
+        private string choice;
 
         public AddBoatController()
         {
@@ -20,14 +20,21 @@ namespace BoatClub.controller
             this.memberDAL = new MemberDAL();
             boatView.showAddBoatMenu();
             boatView.showMemberList();
-            selectedMember = boatView.getSelectedMember();
-            saveBoat();
+            choice = boatView.getChoice();
+            if (boatView.doesMemberExist())
+            {
+                saveBoat();
+            }
+            else {
+                StartController startController = new StartController();
+            }
+            
         }
 
         public void saveBoat()
         {
-            Boat newBoat = boatView.addBoat(selectedMember);
-            memberDAL.saveBoat(newBoat, selectedMember);
+            Boat newBoat = boatView.addBoat(choice);
+            memberDAL.saveBoat(newBoat, choice);
             StartController startController = new StartController();
         }
     }

@@ -24,21 +24,32 @@ namespace BoatClub.view
 
         public void showMemberBoatsMenu(string memberId){
 
-            this.memberId = memberId;
-
-            List<KeyValuePair<string, string>> boats = new List<KeyValuePair<string, string>>();
-            boats = memberDAL.getBoatsByMemberId(memberId);
-
-            Console.Clear();
-            this.helper.printDivider();
-            Console.WriteLine("MEDLEM " + memberId + ":S BÅTAR");
-            this.helper.printDivider();
-
-            Console.WriteLine("\nAnge båtens id för att redigera eller radera.\n");
-
-            foreach (var boat in boats)
+            if (memberDAL.getNumberOfBoats(memberId) == 0)
             {
-                Console.WriteLine("{0}: {1}", boat.Key, boat.Value);
+                Console.Clear();
+                Console.WriteLine("Medlemmar har inga båtar att radera.");
+                helper.getBackToStartMessage();
+            }
+
+            else { 
+
+                this.memberId = memberId;
+
+                List<KeyValuePair<string, string>> boats = new List<KeyValuePair<string, string>>();
+                boats = memberDAL.getBoatsByMemberId(memberId);
+
+                Console.Clear();
+
+                this.helper.printDivider();
+                Console.WriteLine("MEDLEM " + memberId + ":S BÅTAR");
+                this.helper.printDivider();
+
+                Console.WriteLine("\nAnge båtens id för att redigera eller radera.\n");
+
+                foreach (var boat in boats)
+                {
+                    Console.WriteLine("{0}: {1}", boat.Key, boat.Value);
+                }
             }
         }
 
@@ -49,26 +60,37 @@ namespace BoatClub.view
         }
 
         public void showEditBoatMenu(string boatId, string memberId) {
-            List<KeyValuePair<string, string>> boat = memberDAL.getBoatById(boatId);
-            Console.Clear();
-            this.helper.printDivider();
-            Console.WriteLine("MEDLEM " + memberId + ":S BÅT " + boatId);
-            this.helper.printDivider();
 
-            Console.WriteLine("\nAnge T för att ta bort båt.");
-            Console.WriteLine("Ange R för att redigera båt.\n");
-
-            foreach (var element in boat)
+            try
             {
-                if(element.Key == memberDAL.getBoatTypeKey()){
-                    boatType = element.Value;
-                }
+                List<KeyValuePair<string, string>> boat = memberDAL.getBoatById(boatId);
+                Console.Clear();
+                this.helper.printDivider();
+                Console.WriteLine("MEDLEM " + memberId + ":S BÅT " + boatId);
+                this.helper.printDivider();
 
-                if (element.Key == memberDAL.getBoatLengthKey())
+                Console.WriteLine("\nAnge T för att ta bort båt.");
+                Console.WriteLine("Ange R för att redigera båt.\n");
+
+                foreach (var element in boat)
                 {
-                    boatLength = element.Value;
+                    if (element.Key == memberDAL.getBoatTypeKey())
+                    {
+                        boatType = element.Value;
+                    }
+
+                    if (element.Key == memberDAL.getBoatLengthKey())
+                    {
+                        boatLength = element.Value;
+                    }
+                    Console.WriteLine("{0}: {1}", element.Key, element.Value);
                 }
-                Console.WriteLine("{0}: {1}", element.Key, element.Value);
+            }
+
+            catch (Exception) {
+                Console.Clear();
+                Console.WriteLine("Båten finns inte.");
+                helper.getBackToStartMessage();
             }
         }
 

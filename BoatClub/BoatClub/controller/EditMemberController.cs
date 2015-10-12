@@ -32,23 +32,21 @@ namespace BoatClub.controller
 
         public void executeMenuChoice(Helper.MenuChoice menuChoice)
         {
-            if (menuChoice == Helper.MenuChoice.Delete)
-            {
-                memberDAL.deleteMemberById(selectedMember);
-                StartController startController = new StartController();
-            }
-            if (menuChoice == Helper.MenuChoice.Edit)
-            {
-                editMemberView.showSelectedMemberWithoutBoats(selectedMember);
-                memberDAL.updateMemberById(editMemberView.editMember(selectedMember));
-                StartController startController = new StartController();
-            }
             if (menuChoice == Helper.MenuChoice.Boats)
             {
                 EditBoatController editBoatcontroller = new EditBoatController(selectedMember);
             }
-            if (menuChoice == Helper.MenuChoice.Back)
-            {
+            else { 
+                if (menuChoice == Helper.MenuChoice.Delete)
+                {
+                    memberDAL.deleteMemberById(selectedMember);
+                }
+                if (menuChoice == Helper.MenuChoice.Edit)
+                {
+                    editMemberView.showSelectedMemberWithoutBoats(selectedMember);
+                    memberDAL.updateMemberById(editMemberView.editMember(selectedMember));
+                }
+            
                 StartController startController = new StartController();
             }
         }

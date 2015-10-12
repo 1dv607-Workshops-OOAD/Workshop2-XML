@@ -59,48 +59,61 @@ namespace BoatClub.view
 
         public void showSelectedMember(string memberId)
         {
-            List<KeyValuePair<string, string>> member = memberDAL.getMemberById(memberId);
 
-            foreach (var element in member)
-            {
-                if (element.Key == memberDAL.getNumberOfBoatsKey())
+            try { 
+                List<KeyValuePair<string, string>> member = memberDAL.getMemberById(memberId);
+                foreach (var element in member)
                 {
-                    continue;
+                    if (element.Key == memberDAL.getNumberOfBoatsKey())
+                    {
+                        continue;
+                    }
+                    Console.WriteLine("{0}: {1}", element.Key, element.Value);
                 }
-                Console.WriteLine("{0}: {1}", element.Key, element.Value);
+            }
+
+            catch(Exception){
+                Console.WriteLine("Medlemmen finns inte! Tryck S för att gå tillbaka till startmenyn.");
             }
         }
 
         public void showSelectedMemberWithoutBoats(string memberId)
         {
-            List<KeyValuePair<string, string>> member = memberDAL.getMemberById(memberId);
-            Console.Clear();
-            helper.printDivider();
-            Console.WriteLine("REDIGERA MEDLEM MED MEDLEMSNUMMER " + memberId);
-            helper.printDivider();
-            Console.WriteLine();
-            Console.WriteLine("Lämna tomt för att behålla gammalt värde.\n");
+           // try
+           // {
+                List<KeyValuePair<string, string>> member = memberDAL.getMemberById(memberId);
+                Console.Clear();
+                helper.printDivider();
+                Console.WriteLine("REDIGERA MEDLEM MED MEDLEMSNUMMER " + memberId);
+                helper.printDivider();
+                Console.WriteLine();
+                Console.WriteLine("Lämna tomt för att behålla gammalt värde.\n");
 
-            foreach (var element in member)
-            {
-                if (element.Key == memberDAL.getNameKey() || element.Key == memberDAL.getSocialSecNoKey())
+                foreach (var element in member)
                 {
-                    if (element.Key == memberDAL.getNameKey())
+                    if (element.Key == memberDAL.getNameKey() || element.Key == memberDAL.getSocialSecNoKey())
                     {
-                        name = element.Value;
+                        if (element.Key == memberDAL.getNameKey())
+                        {
+                            name = element.Value;
+                        }
+                        if (element.Key == memberDAL.getSocialSecNoKey())
+                        {
+                            socialSecNo = element.Value;
+                        }
+                        Console.WriteLine("{0}: {1}", element.Key, element.Value);
                     }
-                    if (element.Key == memberDAL.getSocialSecNoKey())
-                    {
-                        socialSecNo = element.Value;
-                    }
-                    Console.WriteLine("{0}: {1}", element.Key, element.Value);
-                }
 
-                else
-                {
-                    continue;
+                    else
+                    {
+                        continue;
+                    }
                 }
-            }
+           // }
+            //catch (Exception)
+            //{
+            //    Console.WriteLine("Medlemmen finns inte! Tryck S för att gå tillbaka till startmenyn.");
+            //}
         }
 
         public Member editMember(string memberId)

@@ -9,6 +9,15 @@ namespace BoatClub.helper
 {
     public class Helper
     {
+
+        private string boatType = "Båttyp";
+        private string boatLength = "Båtlängd";
+        private string socialSecNo = "Personnummer";
+        private string memberId = "MEDLEMSID";
+        private string name = "Namn";
+        private string numberOfBoats = "Antal båtar";
+        private string boatId = "BÅT-ID";
+
         public enum MenuChoice
         {
             Delete,
@@ -36,5 +45,13 @@ namespace BoatClub.helper
         {
             Console.WriteLine("Ange S för att komma tillbaka till startmenyn.\n");
         }
+
+        public string BoatType { get { return boatType; } }
+        public string BoatLength { get { return boatLength; } }
+        public string SocialSecNo { get { return socialSecNo; } }
+        public string MemberId { get { return memberId; } }
+        public string Name { get { return name; } }
+        public string NumberOfBoats { get { return numberOfBoats; } }
+        public string BoatId { get { return boatId; } }
     }
 }
