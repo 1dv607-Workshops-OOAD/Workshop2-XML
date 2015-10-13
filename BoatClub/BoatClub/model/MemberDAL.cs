@@ -15,6 +15,7 @@ namespace BoatClub.model
     {
         private Helper helper;
 
+        //Strings for generating key value pair lists
         private string boatType;
         private string boatLength;
         private string socialSecNo;
@@ -23,8 +24,10 @@ namespace BoatClub.model
         private string numberOfBoats;
         private string boatId;
 
+        //Path to XML file
         private string path = "../../data/Members.xml";
 
+        //Elements and attributes strings for XML files
         private string XMLElementMembers = "Members";
         private string XMLElementMember = "Member";
         private string XMLElementBoat = "Boat";
@@ -73,6 +76,7 @@ namespace BoatClub.model
             return numberOfBoats;
         }
 
+        //Returns a list of all members
         public List<KeyValuePair<string, string>> listMembers()
         {
             List<KeyValuePair<string, string>> members = new List<KeyValuePair<string, string>>();
@@ -101,16 +105,7 @@ namespace BoatClub.model
             }
         }
 
-        public int getNumberOfBoats(string memberId)
-        {
-            XDocument doc = XDocument.Load(path);
-            var member = (from elements in doc.Elements(XMLElementMembers).Elements(XMLElementMember)
-                          where elements.Attribute(XMLAttributeMemberId).Value == memberId
-                          select elements).FirstOrDefault();
-            var boatList = member.Elements(XMLElementBoat).ToList();
-            return boatList.Count;
-        }
-
+        //Returns list containing one member with boats
         public List<KeyValuePair<string, string>> getMemberById(string memberId)
         {
             List<KeyValuePair<string, string>> member = new List<KeyValuePair<string, string>>();
@@ -182,6 +177,17 @@ namespace BoatClub.model
             doc.Save(path);
         }
 
+        //Returns number of boats for one member.
+        public int getNumberOfBoats(string memberId)
+        {
+            XDocument doc = XDocument.Load(path);
+            var member = (from elements in doc.Elements(XMLElementMembers).Elements(XMLElementMember)
+                          where elements.Attribute(XMLAttributeMemberId).Value == memberId
+                          select elements).FirstOrDefault();
+            var boatList = member.Elements(XMLElementBoat).ToList();
+            return boatList.Count;
+        }
+
         public void saveBoat(Boat newBoat, string memberId)
         {
             XDocument doc = XDocument.Load(path);
@@ -197,6 +203,7 @@ namespace BoatClub.model
             doc.Save(path);
         }
 
+        //Returns a list of boats for one member
         public List<KeyValuePair<string, string>> getBoatsByMemberId(string memberId)
         {
             List<KeyValuePair<string, string>> boats = new List<KeyValuePair<string, string>>();
@@ -216,6 +223,7 @@ namespace BoatClub.model
             return boats;
         }
 
+        //Returns one boat
         public List<KeyValuePair<string, string>> getBoatById(string selectedBoatId)
         {
             List<KeyValuePair<string, string>> boat = new List<KeyValuePair<string, string>>();
@@ -233,10 +241,6 @@ namespace BoatClub.model
                             boat.Add(new KeyValuePair<string, string>(boatLength, reader.GetAttribute(XMLAttributeBoatLength)));
                         }
                     }
-                    //else
-                    //{
-                    //    throw new Exception();
-                    //}
                 }
 
                 if (boat.Count == 0)

@@ -33,8 +33,7 @@ namespace BoatClub.view
             }
         }
 
-        public void showCompactList()
-        {
+        public void showCompactList() {
             Console.Clear();
             helper.printDivider();
             Console.WriteLine("FÖRENKLAD MEDLEMSLISTA");
@@ -70,8 +69,7 @@ namespace BoatClub.view
             }
         }
 
-        public string getChoice()
-        {
+        public string getChoice() {
             //Returns selected member or S for start menu
             string choice = Console.ReadLine();
             return choice;

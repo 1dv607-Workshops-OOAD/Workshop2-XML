@@ -16,6 +16,7 @@ namespace BoatClub.model
         {
             MemberDAL _memberDAL = new MemberDAL();
 
+            //Gets one member´s number of boats, and generates a boat id
             if (boatId == 0)
             {
                 this._boatId = 1 + _memberDAL.getNumberOfBoats(selectedMember);
@@ -29,7 +30,9 @@ namespace BoatClub.model
         }
 
         public int BoatId { get { return _boatId; } }
+        
         public string BoatType { get { return _boatType; } }
+        
         public string BoatLength { get { return _boatLength; } }
     }
 }

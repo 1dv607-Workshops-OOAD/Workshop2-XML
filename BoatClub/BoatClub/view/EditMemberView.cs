@@ -77,9 +77,9 @@ namespace BoatClub.view
             }
         }
 
+        //Shows one member (without boat information) for editing member information
         public void showSelectedMemberWithoutBoats(string memberId)
         {
-
             List<KeyValuePair<string, string>> member = memberDAL.getMemberById(memberId);
             Console.Clear();
             helper.printDivider();
@@ -108,7 +108,7 @@ namespace BoatClub.view
                     continue;
                 }
             }
-    }
+        }
 
         public Member editMember(string memberId)
         {

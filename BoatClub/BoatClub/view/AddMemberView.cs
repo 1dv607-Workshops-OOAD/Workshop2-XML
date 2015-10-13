@@ -12,15 +12,11 @@ namespace BoatClub.view
     {
         private string memberName = "";
         private string memberSocSecNo = "";
-        private Helper helper;
-
-        public AddMemberView()
-        {
-            this.helper = new Helper();
-        }
 
         public Member showAddMemberView()
         {
+            Helper helper = new Helper();
+
             Console.Clear();
             helper.printDivider();
             Console.WriteLine("LÄGG TILL MEDLEM");

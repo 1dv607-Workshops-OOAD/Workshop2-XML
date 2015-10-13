@@ -22,6 +22,7 @@ namespace BoatClub.view
             this.memberDAL = new MemberDAL();
         }
 
+        //Shows one member´s boats, with menu choices
         public void showMemberBoatsMenu(string memberId){
 
             if (memberDAL.getNumberOfBoats(memberId) == 0)
@@ -59,6 +60,7 @@ namespace BoatClub.view
             return boatId;
         }
 
+        //Shows one boat to edit or delete
         public void showEditBoatMenu(string boatId, string memberId) {
 
             try

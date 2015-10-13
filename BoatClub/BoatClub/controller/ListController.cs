@@ -10,16 +10,16 @@ namespace BoatClub.controller
 {
     class ListController
     {
-        private ListView listView;
-
         public ListController(StartView.MenuChoice menuChoice)
         {
-            this.listView = new ListView();
             executeMenuChoice(menuChoice);
         }
 
         public void executeMenuChoice(StartView.MenuChoice menuChoice)
         {
+            //Handles user interface for both types of lists
+            ListView listView = new ListView();
+
             if (menuChoice == StartView.MenuChoice.CompactListMembers)
             {
                 listView.showCompactList();

@@ -16,6 +16,7 @@ namespace BoatClub.model
         {
             if (id == 0)
             {
+                //Sets a unique member id, for a new member
                 MemberID memberId = new MemberID();
                 this._memberId = memberId.generateMemberId();
             }

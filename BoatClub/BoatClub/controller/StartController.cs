@@ -10,17 +10,17 @@ namespace BoatClub.controller
 {
     public class StartController
     {
-        private StartView startView;
-
         public StartController()
         {
-            this.startView = new StartView();
             executeMenuChoice();
         }
 
         public void executeMenuChoice()
         {
+            //StartView handles the main menu
+            StartView startView = new StartView();
             startView.showStartMenu();
+            
             StartView.MenuChoice menuChoice = startView.GetMenuChoice();
             if (menuChoice == StartView.MenuChoice.AddMember)
             {
@@ -29,12 +29,14 @@ namespace BoatClub.controller
             if (menuChoice == StartView.MenuChoice.VerboseListMembers || 
                 menuChoice == StartView.MenuChoice.CompactListMembers)
             {
+                //Handles both types of lists, depending on user choice
                 ListController listController = new ListController(menuChoice);
             }
             if (menuChoice == StartView.MenuChoice.AddBoat)
             {
                 AddBoatController addBoatController = new AddBoatController();
             }
+            //Takes user back to main menu
             if(menuChoice == StartView.MenuChoice.None){
                 startView = new StartView();
                 executeMenuChoice();

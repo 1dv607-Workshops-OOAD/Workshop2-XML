@@ -9,6 +9,7 @@ namespace BoatClub.helper
 {
     public class Helper
     {
+        //Helper class to avoid DRY
 
         private string boatType = "Båttyp";
         private string boatLength = "Båtlängd";

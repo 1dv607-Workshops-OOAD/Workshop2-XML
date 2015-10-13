@@ -10,14 +10,12 @@ namespace BoatClub.view
 {
     class AddBoatView
     {
-        private List<KeyValuePair<string, string>> listMembers;
         private Helper helper;
         private MemberDAL memberDAL;
         private bool memberExists = true;
 
         public AddBoatView()
         {
-            this.listMembers = new List<KeyValuePair<string, string>>();
             this.memberDAL = new MemberDAL();
             this.helper = new Helper();
         }
@@ -33,6 +31,7 @@ namespace BoatClub.view
 
         public void showMemberList()
         {
+            List<KeyValuePair<string, string>> listMembers = new List<KeyValuePair<string, string>>();
             listMembers = memberDAL.listMembers();
 
             foreach (var member in listMembers)
@@ -80,7 +79,6 @@ namespace BoatClub.view
                 boatLength = Console.ReadLine();
             }
             
-
             Boat newBoat = new Boat(0, boatType, boatLength, selectedMember);
             return newBoat;
         }

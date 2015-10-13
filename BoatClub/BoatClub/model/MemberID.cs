@@ -9,6 +9,8 @@ namespace BoatClub.model
 {
     class MemberID
     {
+        //Class generates a unique member id, using a text file
+
         private string path = "../../data/MemberID.txt";
         private int count;
 

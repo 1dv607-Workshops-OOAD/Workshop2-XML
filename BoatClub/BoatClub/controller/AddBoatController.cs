@@ -27,13 +27,14 @@ namespace BoatClub.controller
             else {
                 StartController startController = new StartController();
             }
-            
         }
 
         public void saveBoat()
         {
             MemberDAL memberDAL = new MemberDAL();
             Boat newBoat = boatView.addBoat(choice);
+
+            //Save boat and go back to main menu
             memberDAL.saveBoat(newBoat, choice);
             StartController startController = new StartController();
         }

@@ -7,15 +7,8 @@ using BoatClub.helper;
 
 namespace BoatClub.view
 {
-
     public class StartView
     {
-        private Helper helper;
-
-        public StartView()
-        {
-            this.helper = new Helper();
-        }
         public enum MenuChoice
         {
             AddMember,
@@ -26,6 +19,8 @@ namespace BoatClub.view
         }
         public void showStartMenu()
         {
+            Helper helper = new Helper();
+
             Console.Clear();
             helper.printDivider();
             Console.WriteLine("VÄLKOMMEN TILL BÅTKLUBBEN");

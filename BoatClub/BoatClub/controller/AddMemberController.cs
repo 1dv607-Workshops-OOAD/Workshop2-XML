@@ -20,10 +20,10 @@ namespace BoatClub.controller
         {
             AddMemberView addMemberView  = new AddMemberView();
             MemberDAL memberDAL = new MemberDAL();
+
+            //Save member and go back to main menu
             memberDAL.saveMember(addMemberView.showAddMemberView());
             StartController startController = new StartController();
         }
-
-
     }
 }
