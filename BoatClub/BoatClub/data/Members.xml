@@ -1,8 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Members>
   <Member memberId="27" name="Johanna" socialSecNo="2222222222">
-    <Boat boatId="2" boatType="Motorseglare" boatLength="12" />
+    <Boat boatId="2" boatType="Annan" boatLength="100" />
     <Boat boatId="3" boatType="Segelbåt" boatLength="15" />
   </Member>
-  <Member memberId="30" name="Test" socialSecNo="123" />
+  <Member memberId="30" name="Test" socialSecNo="123">
+    <Boat boatId="1" boatType="Annan" boatLength="10" />
+  </Member>
 </Members>

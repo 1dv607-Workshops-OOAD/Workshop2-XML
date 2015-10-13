@@ -116,7 +116,7 @@ namespace BoatClub.view
             Console.WriteLine("REDIGERA BÅT MED ID " + selectedBoatId + "\n");
             helper.printDivider();
             helper.getBoatTypeMenu();
-            string newBoatType = setBoatType(Console.ReadLine());
+            string newBoatType = helper.setBoatType(Console.ReadLine());
             Console.Write("Båtlängd: \n");
             string newBoatLength = Console.ReadLine();
 
@@ -128,30 +128,6 @@ namespace BoatClub.view
             Boat editedBoat = new Boat(int.Parse(boatId), newBoatType, newBoatLength, memberId);
 
             return editedBoat;
-        }
-
-        public string setBoatType(string input)
-        {
-            string boatType = "";
-
-            if (input == "1")
-            {
-                boatType = "Segelbåt";
-            }
-            if (input == "2")
-            {
-                boatType = "Kajak";
-            }
-            if (input == "3")
-            {
-                boatType = "Motorseglare";
-            }
-            if (input == "4")
-            {
-                boatType = "Annan";
-            }
-
-            return boatType;
         }
     }
 }

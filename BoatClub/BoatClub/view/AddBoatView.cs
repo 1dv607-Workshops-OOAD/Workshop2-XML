@@ -71,7 +71,7 @@ namespace BoatClub.view
             while (boatType == "")
             {
                 helper.getBoatTypeMenu();
-                boatType = setBoatType(Console.ReadLine());
+                boatType = helper.setBoatType(Console.ReadLine());
             }
 
             while(boatLength == ""){
@@ -81,30 +81,6 @@ namespace BoatClub.view
             
             Boat newBoat = new Boat(0, boatType, boatLength, selectedMember);
             return newBoat;
-        }
-
-        public string setBoatType(string input)
-        {
-            string boatType = "";
-
-            if (input == "1")
-            {
-                boatType = "Segelbåt";
-            }
-            if (input == "2")
-            {
-                boatType = "Kajak";
-            }
-            if (input == "3")
-            {
-                boatType = "Motorseglare";
-            }
-            if (input == "4")
-            {
-                boatType = "Annan";
-            }
-
-            return boatType;
         }
     }
 }
