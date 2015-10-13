@@ -65,7 +65,7 @@ namespace BoatClub.view
 
             try
             {
-                List<KeyValuePair<string, string>> boat = memberDAL.getBoatById(boatId);
+                List<KeyValuePair<string, string>> boat = memberDAL.getBoatById(boatId, memberId);
                 Console.Clear();
                 this.helper.printDivider();
                 Console.WriteLine("MEDLEM " + memberId + ":S BÅT " + boatId);

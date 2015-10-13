@@ -224,31 +224,30 @@ namespace BoatClub.model
         }
 
         //Returns one boat
-        public List<KeyValuePair<string, string>> getBoatById(string selectedBoatId)
+        public List<KeyValuePair<string, string>> getBoatById(string selectedBoatId, string memberId)
         {
             List<KeyValuePair<string, string>> boat = new List<KeyValuePair<string, string>>();
             using (XmlTextReader reader = new XmlTextReader(path))
             {
                 XDocument doc = XDocument.Load(path);
-                while (reader.Read())
+
+                foreach (var item in doc.Descendants(XMLElementMember).Elements(XMLElementBoat)
+                        .Where(e => e.Parent.Name == XMLElementMember &&
+                        e.Parent.Attribute(XMLAttributeMemberId).Value == memberId))
                 {
-                    if ((reader.NodeType == XmlNodeType.Element) && (reader.Name == XMLElementBoat))
-                    {
-                        if (reader.GetAttribute(XMLAttributeBoatId) == selectedBoatId)
-                        {
-                            boat.Add(new KeyValuePair<string, string>(boatId, reader.GetAttribute(XMLAttributeBoatId)));
-                            boat.Add(new KeyValuePair<string, string>(boatType, reader.GetAttribute(XMLAttributeBoatType)));
-                            boat.Add(new KeyValuePair<string, string>(boatLength, reader.GetAttribute(XMLAttributeBoatLength)));
-                        }
+                    if(item.Attribute(XMLAttributeBoatId).Value == selectedBoatId){
+                        boat.Add(new KeyValuePair<string, string>(boatId, item.Attribute(XMLAttributeBoatId).Value));
+                        boat.Add(new KeyValuePair<string, string>(boatType, item.Attribute(XMLAttributeBoatType).Value));
+                        boat.Add(new KeyValuePair<string, string>(boatLength, item.Attribute(XMLAttributeBoatLength).Value));
                     }
                 }
-
-                if (boat.Count == 0)
-                {
-                    throw new Exception();
-                }
-                return boat;
             }
+
+            if (boat.Count == 0)
+            {
+                throw new Exception();
+            }
+            return boat;
         }
 
         public void deleteBoatById(string selectedBoatId, string memberId)
